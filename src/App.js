@@ -1,11 +1,11 @@
 import './App.css';
+import Main from './pages/main/Main';
 //test commit 1.1
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
+    <>
+    <Main />
+    </>
   );
 }
 
