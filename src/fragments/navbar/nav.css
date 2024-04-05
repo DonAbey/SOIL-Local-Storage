@@ -5,14 +5,12 @@
 .menu-style {
     text-decoration: none;
     color:rgba(0,0,0,.9)
-}
-
-.menu-style:active,.menu-style:hover {
-    color:rgba(0,0,0,.9)
-
-}
-
-.menu-style:hover {
+  }
+  .menu-style:active,.menu-style:hover {
+    color:#009F7F;
+  
+  }
+  .menu-style:hover {
     font-weight:bold;
     text-decoration: underline;
-}
+  }
