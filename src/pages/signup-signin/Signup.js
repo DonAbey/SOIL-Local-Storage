@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { validateEmail, validateEmailStorage, validatePassword } from "./Verify";
+import { validateEmail, validateEmailStorage, validatePassword } from "../../data/verify";
 import { useNavigate } from "react-router-dom";
 import bcrypt from 'bcryptjs';
-import signupBackground1 from '../resources/images/signup-background1.jpg';
-import './SignUp.css';
+import signupBackground1 from '../../assets/signup-background1.jpg';
+//import './SignUp.css';
 
 function SignUp() {
     //tracking sign up

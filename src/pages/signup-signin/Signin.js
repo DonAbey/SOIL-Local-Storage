@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import {verifySignIn} from "./Verify";
+import {verifySignIn} from "../../data/verify";
 import { useNavigate } from "react-router-dom";
 
 function SignIn() {
