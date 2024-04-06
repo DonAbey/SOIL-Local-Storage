@@ -1,10 +1,11 @@
 import React from 'react'
-
+import './footer.css'
 const Footer = () => {
   return (
-    <div className="row">
+    <>
+    <footer className="row justify-content-center bg-footer mt-auto">
       <div className="col-md-4">
-      <h4>SOIL is a long-term organic food grocer with several store locations around Melbourne.</h4>
+      <h5>SOIL is a long-term organic food grocer.</h5>
         <div className="col-md-6">
           <ul>
             <li>Contact Us</li>
@@ -16,7 +17,7 @@ const Footer = () => {
       </div>
       </div>
       <div className="col-md-4">
-        <h4>MARKET HOURS</h4>
+        <h5>MARKET HOURS</h5>
         <div className="row">
         <div className="col-md-4">
           <ul>
@@ -40,9 +41,8 @@ const Footer = () => {
         </div>
       
       </div>
-      <div className="col-md-5">x</div>
-
-    </div>
+    </footer>
+    </>
   )
 }
 

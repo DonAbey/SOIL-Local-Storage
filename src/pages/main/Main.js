@@ -4,10 +4,17 @@ import Home from "../homepage/Home";
 import Header from "../../fragments/header/Header";
 import Footer from "../../fragments/footer/Footer";
 import Myprofile from "../myprofile/Myprofile";
-import {getUser} from "../../data/repository"
+import {getUser} from "../../data/repository";
+import SpecialDeals from "../special-deals/Special-deals";
+import Cart from "../cart/Cart";
+import { initProductData } from "../../data/productData";
+import useLocalStorage from "../../components/useLocalStorage";
+
 const Main = () => {
   const [username,setUsername] = useState(getUser())
-  
+  //if initdata changes -> call use effect to store the products in the local storage again
+  const [initProducts,setInitProducts] = useState(initProductData())
+  useLocalStorage("Products",initProducts)
   return (
     <>
       <Router>
@@ -15,6 +22,8 @@ const Main = () => {
         <Routes>
           <Route path="/" element={<Home username={username}/>} />
           <Route path="/profile" element={<Myprofile />} />
+          <Route path="/special" element={<SpecialDeals />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </Router>

@@ -5,9 +5,12 @@
 }
 .header-item-style{
     text-decoration: none;
-    color:rgba(0,0,0,.9)
+    color:rgb(0, 0, 0);
 }
 
 .soil-logo {
-    color:#009F7F !important;
+    color:rgb(218, 221, 196);
+}
+.header-nav{
+    background-color: #009F7F !important;
 }

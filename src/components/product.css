@@ -1,0 +1,33 @@
+@import url('https://cdn-uicons.flaticon.com/2.2.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+.item{
+ padding:20px;
+ background-color: #eeeee6;
+ border-radius: 20px;
+ width: 16em;
+}
+.item img {
+    text-align: center;
+    filter:drop-shadow(0 1px 2px #0009);
+    width: 90%;
+    transition: transform 0.3s ease;
+    height: 220px;
+}
+.item img:hover{
+    transform: scale(1.05); 
+}
+.price {
+    letter-spacing: 3px;
+}
+.item button {
+    cursor:pointer;
+    padding: 5px 10px;
+    margin-top:10px;
+    border-radius: 20px;
+    background-color:rgb(0, 159, 127);
+    border:none;
+    color:#eee;
+}
+
+.item button:hover {
+    background-color: rgb(2, 127, 102);
+}

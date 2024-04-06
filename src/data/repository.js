@@ -7,5 +7,8 @@ const USER_KEY = "user";
 const getUser = () => {
     return localStorage.getItem(USER_KEY);
 }
-
-export {getUser}
+const getData = (key) => {
+    let items = localStorage.getItem((key))
+    return JSON.parse(items)
+}
+export {getUser,getData}
