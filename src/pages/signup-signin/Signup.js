@@ -93,7 +93,7 @@ function SignUp() {
 
         //setting a timer
         setTimeout( () => {
-            navigate("/home")
+            navigate("/")
         }, 5000);
     };
 

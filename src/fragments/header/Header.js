@@ -28,10 +28,18 @@ const Header = (props) => {
           </form>
           <ul className="navbar nav">
           {props.username === null &&
-            <li className="nav-item ms-5 me-5">
-              <Link to="/" className={"header-item-style"}>
+            <li className="nav-item ms-5 me-1">
+              <Link to="/login" className={"header-item-style"}>
                 {" "}
                 <i class="fi fi-rr-user"></i> Login
+              </Link>
+            </li>
+            }
+                  {props.username === null &&
+            <li className="nav-item ms-3 me-5">
+              <Link to="/Register" className={"header-item-style"}>
+                {" "}
+                <i class="fi fi-rr-user"></i> Register
               </Link>
             </li>
             }

@@ -10,6 +10,9 @@ import Cart from "../cart/Cart";
 import { initProductData } from "../../data/productData";
 import useLocalStorage from "../../fragments/customHook/useLocalStorage";
 import Productpage from "../product-page/Productpage";
+import Signin from "../signup-signin/Signin";
+import Signup from "../signup-signin/Signup";
+
 const Main = () => {
   const [username, setUsername] = useState(getUser());
   //if initdata changes -> call use effect to store the products in the local storage again
@@ -21,6 +24,9 @@ const Main = () => {
         <Header username={username} />
         <Routes>
           <Route path="/" element={<Home username={username} />} />
+          <Route path="/login" element={<Signin />} />
+          <Route path="/Register" element={<Signup />} />
+
           <Route path="/profile" element={<Myprofile />} />
           <Route path="/special" element={<SpecialDeals />} />
           <Route path="/product-page" element={<Productpage />} />
