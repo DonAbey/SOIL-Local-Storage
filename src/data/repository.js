@@ -12,4 +12,9 @@ const getData = (key) => {
     let items = localStorage.getItem((key))
     return JSON.parse(items)
 }
-export {getUser,getData}
+
+function removeUser() {
+    localStorage.removeItem(USER_KEY);
+  }
+  
+export {getUser,getData,removeUser}

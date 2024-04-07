@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
 
-const Header = ({username}) => {
+const Header = ({username,logout}) => {
   return (
     <>
       <nav class="navbar navbar-light header-nav py-4">
@@ -52,7 +52,7 @@ const Header = ({username}) => {
               <Link to="/cart" className={"header-item-style me-4"}>
                 <i class="fi fi-rr-shopping-cart "></i> Cart
               </Link>
-              <Link to="/" className={"header-item-style"}>
+              <Link to="/login" onClick={logout} className={"header-item-style"}>
                 <i class="fi fi-rr-shopping-cart "></i> Logout
               </Link>
             </li>
