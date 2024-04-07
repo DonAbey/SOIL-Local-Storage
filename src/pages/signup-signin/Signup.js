@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,Link } from "react";
 import { validateEmail, validateEmailStorage, validatePassword } from "../../data/verify";
 import { useNavigate } from "react-router-dom";
 import bcrypt from 'bcryptjs';
 import signupBackground1 from '../../assets/signup-background1.jpg';
 //import './SignUp.css';
 
-function SignUp() {
+function SignUp(props) {
     //tracking sign up
     const [isSignedUp, setIsSignedUp] = useState(false);
 
@@ -93,8 +93,10 @@ function SignUp() {
 
         //setting a timer
         setTimeout( () => {
+            props.loginUser(newUser.name);
             navigate("/")
-        }, 5000);
+        }, 2000);
+        return
     };
 
     return (
@@ -160,6 +162,7 @@ function SignUp() {
 
 };
 
-export default SignUp;
+export { SignUp };
+
 
 
