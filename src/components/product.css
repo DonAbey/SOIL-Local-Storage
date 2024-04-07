@@ -1,13 +1,12 @@
 @import url('https://cdn-uicons.flaticon.com/2.2.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 .item{
  padding:20px;
- background-color: #eeeee6;
- border-radius: 20px;
+ background-color: #f3f3f3;
+ border-radius: 10px;
  width: 16em;
 }
 .item img {
     text-align: center;
-    filter:drop-shadow(0 1px 2px #0009);
     width: 90%;
     transition: transform 0.3s ease;
     height: 220px;

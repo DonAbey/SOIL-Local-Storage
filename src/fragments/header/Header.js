@@ -3,15 +3,19 @@ import Navbar from "../navbar/Navbar";
 import "./header.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import logo from '../../assets/logo.png';
 
 const Header = (props) => {
   return (
     <>
       <nav class="navbar navbar-light header-nav py-4">
         <div class="container-fluid justify-space-between ms-5 me-5">
-          <a class="navbar-brand me-5 soil-logo" href="#">
-            <h1 className="soil-logo">SOIL</h1>
+        <Link to="/" className="soil-logo">
+          <a class="navbar-brand me-5 soil-logo">
+            <h1 className="soil-logo d-inline">SOIL</h1>
+            <img src={logo} alt="" style={{width:"100px"}}/>
           </a>
+          </Link>
           <form action="">
             <div class="input-group col-md-4 search rounded-pill">
               <input

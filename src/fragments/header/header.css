@@ -10,7 +10,9 @@
 
 .soil-logo {
     color:rgb(218, 221, 196);
+    text-decoration: none !important;
 }
+
 .header-nav{
     background-color: #009F7F !important;
 }

@@ -9,7 +9,7 @@ const Navbar = () => {
           <ul className="navbar nav">
             <NavItem content="Home" linkto="/" />
             <NavItem content="Special Deals" linkto="/special" />
-            <NavItem content="Shop Online" linkto="/" />
+            <NavItem content="Shop Online" linkto="/product-page" />
             <NavItem content="Forums" linkto="/" />
           </ul>
         </div>
