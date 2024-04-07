@@ -10,6 +10,7 @@ import Product from "../../components/Product";
 const SpecialDeals = () => {
   useScrollToTop();
   const [farmProducts, setFarmProducts] = useState(getFarmProducts());
+  console.log(farmProducts)
   useLocalStorage("SpecialProducts", farmProducts);
   const specialProducts = getData("SpecialProducts");
 

@@ -9,7 +9,7 @@ import Banner from "../../components/Banner";
 import {useScrollToTop} from "../../fragments/customHook/useScrollToTop";
 const Home = ({ username }) => {
   const [products, setProducts] = useState(getData("Products"));
-  const showMostPopular = products.slice(0, 4); /*fake first 5 products */
+  const showMostPopular = products != null ? products.slice(0, 4) : ""; /*fake first 5 products */
   useScrollToTop();
   return (
     <div>
