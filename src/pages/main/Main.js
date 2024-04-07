@@ -15,15 +15,16 @@ import Signup from "../signup-signin/Signup";
 
 const Main = () => {
   const [username, setUsername] = useState(getUser());
+
   //if initdata changes -> call use effect to store the products in the local storage again
   const [initProducts, setInitProducts] = useState(initProductData());
   useLocalStorage("Products", initProducts);
   return (
     <>
       <Router>
-        <Header username={username} />
+        <Header username={username.name} />
         <Routes>
-          <Route path="/" element={<Home username={username} />} />
+          <Route path="/" element={<Home username={username.name} />} />
           <Route path="/login" element={<Signin />} />
           <Route path="/Register" element={<Signup />} />
           <Route path="/profile" element={<Myprofile />} />

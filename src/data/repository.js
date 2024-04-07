@@ -5,7 +5,8 @@ const USERS_KEY = "users";
 const USER_KEY = "activeUser";
 
 const getUser = () => {
-    return localStorage.getItem(USER_KEY);
+    const local = localStorage.getItem(USER_KEY);
+    return JSON.parse(local)
 }
 const getData = (key) => {
     let items = localStorage.getItem((key))

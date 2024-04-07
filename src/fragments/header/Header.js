@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
 
-const Header = (props) => {
+const Header = ({username}) => {
   return (
     <>
       <nav class="navbar navbar-light header-nav py-4">
@@ -27,25 +27,25 @@ const Header = (props) => {
             </div>
           </form>
           <ul className="navbar nav">
-          {props.username === null &&
-            <li className="nav-item ms-5 me-1">
+          {username === null &&
+            <li className="nav-item ms-5 me-5">
               <Link to="/login" className={"header-item-style"}>
                 {" "}
                 <i class="fi fi-rr-user"></i> Login
               </Link>
             </li>
             }
-                  {props.username === null &&
-            <li className="nav-item ms-3 me-5">
+                  {username === null &&
+            <li className="nav-item ms-5 me-5">
               <Link to="/Register" className={"header-item-style"}>
                 {" "}
                 <i class="fi fi-rr-user"></i> Register
               </Link>
             </li>
             }
-            {props.username !== null &&
+            {username !== null &&
             <li className="nav-item me-5">
-              {props.username}
+              {username}
                <Link to="/profile" className={"ms-4 header-item-style me-4"}>
                 <i class="fi fi-rr-shopping-cart"></i> Profile 
               </Link>
