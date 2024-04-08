@@ -106,7 +106,9 @@ function MyProfile(props){
                     <input type="password" 
                     className="form-control" 
                     id="newPassword" value={newPassword} 
-                    onChange={handleNewPasswordChange} />
+                    onChange={handleNewPasswordChange}
+                    required
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="confirmPassword">Confirm New Password</label>
@@ -114,7 +116,9 @@ function MyProfile(props){
                     className="form-control" 
                     id="confirmPassword" 
                     value={confirmPassword} 
-                    onChange={handleConfirmPasswordChange} />
+                    onChange={handleConfirmPasswordChange} 
+                    required
+                    />
                 </div>
                 {error && <p className="text-danger">{error}</p>}
                 <div className="my-3 d-flex justify-content-between">
