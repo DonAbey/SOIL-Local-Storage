@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
 
-const Header = ({username,logout}) => {
+const Header = (props) => {
   return (
     <>
       <nav class="navbar navbar-light header-nav py-4">
@@ -27,7 +27,7 @@ const Header = ({username,logout}) => {
             </div>
           </form>
           <ul className="navbar nav">
-          {username === null &&
+          {props.username === null &&
             <li className="nav-item ms-5 me-5">
               <Link to="/login" className={"header-item-style"}>
                 {" "}
@@ -35,7 +35,7 @@ const Header = ({username,logout}) => {
               </Link>
             </li>
             }
-                  {username === null &&
+                  {props.username === null &&
             <li className="nav-item ms-5 me-5">
               <Link to="/Register" className={"header-item-style"}>
                 {" "}
@@ -43,16 +43,16 @@ const Header = ({username,logout}) => {
               </Link>
             </li>
             }
-            {username !== null &&
+            {props.username !== null &&
             <li className="nav-item me-5">
-              {username}
+              {props.username}
                <Link to="/profile" className={"ms-4 header-item-style me-4"}>
                 <i class="fi fi-rr-shopping-cart"></i> Profile 
               </Link>
               <Link to="/cart" className={"header-item-style me-4"}>
                 <i class="fi fi-rr-shopping-cart "></i> Cart
               </Link>
-              <Link to="/login" onClick={logout} className={"header-item-style"}>
+              <Link to="/login" onClick={props.logout} className={"header-item-style"}>
                 <i class="fi fi-rr-shopping-cart "></i> Logout
               </Link>
             </li>

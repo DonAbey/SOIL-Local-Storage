@@ -32,7 +32,7 @@ const Main = () => {
       <Router>
         <Header username={username} logout={logout} />
         <Routes>
-          <Route path="/" element={<Home username={username} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Signin loginUser={loginUser}/>} />
           <Route path="/Register" element={<SignUp loginUser={loginUser}/>} />
           <Route path="/profile" element={<Myprofile />} />

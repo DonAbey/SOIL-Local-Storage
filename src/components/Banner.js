@@ -1,6 +1,7 @@
 import React from "react";
 import "./banner.css";
 import { Link } from "react-router-dom";
+//Banner with image,text and link
 const Banner = ({ img, text="Organic product specials & small-scale farming", linkto }) => {
   return (
     <>

@@ -6,7 +6,11 @@ const USER_KEY = "activeUser";
 
 const getUser = () => {
     const local = localStorage.getItem(USER_KEY);
-    return JSON.parse(local)
+    if (local != null) {
+        let user = JSON.parse(local)
+        return user.name
+    }
+    return local
 }
 const getData = (key) => {
     let items = localStorage.getItem((key))

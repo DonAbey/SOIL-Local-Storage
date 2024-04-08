@@ -5,6 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import banner2 from '../assets/main-banner2.jpeg';
 import banner3 from '../assets/main-banner3.jpg';
 
+//Carousel slider component
 const CarouselSection = () => {
     const [index, setIndex] = useState(0);
 
