@@ -5,10 +5,20 @@ const USERS_KEY = "users";
 const USER_KEY = "activeUser";
 
 const getUser = () => {
-    return localStorage.getItem(USER_KEY);
+    const local = localStorage.getItem(USER_KEY);
+    if (local != null) {
+        let user = JSON.parse(local)
+        return user.name
+    }
+    return local
 }
 const getData = (key) => {
     let items = localStorage.getItem((key))
     return JSON.parse(items)
 }
-export {getUser,getData}
+
+function removeUser() {
+    localStorage.removeItem(USER_KEY);
+  }
+  
+export {getUser,getData,removeUser}

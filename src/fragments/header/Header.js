@@ -28,7 +28,7 @@ const Header = (props) => {
           </form>
           <ul className="navbar nav">
           {props.username === null &&
-            <li className="nav-item ms-5 me-1">
+            <li className="nav-item ms-5 me-5">
               <Link to="/login" className={"header-item-style"}>
                 {" "}
                 <i class="fi fi-rr-user"></i> Login
@@ -36,7 +36,7 @@ const Header = (props) => {
             </li>
             }
                   {props.username === null &&
-            <li className="nav-item ms-3 me-5">
+            <li className="nav-item ms-5 me-5">
               <Link to="/Register" className={"header-item-style"}>
                 {" "}
                 <i class="fi fi-rr-user"></i> Register
@@ -52,7 +52,7 @@ const Header = (props) => {
               <Link to="/cart" className={"header-item-style me-4"}>
                 <i class="fi fi-rr-shopping-cart "></i> Cart
               </Link>
-              <Link to="/" className={"header-item-style"}>
+              <Link to="/login" onClick={props.logout} className={"header-item-style"}>
                 <i class="fi fi-rr-shopping-cart "></i> Logout
               </Link>
             </li>

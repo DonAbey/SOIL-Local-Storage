@@ -20,11 +20,12 @@ function validateEmailStorage(email){
 }
 
 function validatePassword(password){
-    return password.length >= 8 && //At least 8 or more characters
-    /[A-Z]/.test(password) && // At least one uppercase letter
-    /[a-z]/.test(password) && // At least one lowercase letter
-    /[0-9]/.test(password) && // At least one digit
-    /[^A-Za-z0-9]/.test(password); // At least one symbol
+    return true
+    // return password.length >= 8 && //At least 8 or more characters
+    // /[A-Z]/.test(password) && // At least one uppercase letter
+    // /[a-z]/.test(password) && // At least one lowercase letter
+    // /[0-9]/.test(password) && // At least one digit
+    // /[^A-Za-z0-9]/.test(password); // At least one symbol
 };
 
 function verifySignIn(email, password){

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import {verifySignIn} from "../../data/verify";
 import { useNavigate } from "react-router-dom";
 
-function SignIn() {
+function SignIn(props) {
     //state for signIn
     const [isSignedIn, setIsSignedIn] = useState(null);
 
@@ -31,8 +31,10 @@ function SignIn() {
             localStorage.setItem('activeUser', JSON.stringify(verifiedUser));
             setIsSignedIn(true);
             setTimeout( () =>{
-                navigate("/home")
-            }, 2000);
+                props.loginUser(verifiedUser.name);
+                    
+                navigate("/")
+            });
         }else{
             setIsSignedIn(false)
         }
