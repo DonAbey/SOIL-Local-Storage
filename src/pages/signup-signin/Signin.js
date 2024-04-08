@@ -32,9 +32,8 @@ function SignIn(props) {
             setIsSignedIn(true);
             setTimeout( () =>{
                 props.loginUser(verifiedUser.name);
-                    
                 navigate("/")
-            });
+            },2000);
         }else{
             setIsSignedIn(false)
         }

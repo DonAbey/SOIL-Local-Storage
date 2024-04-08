@@ -1,4 +1,7 @@
 import React, { useEffect, useState, Link } from "react";
+import Carousel from 'react-bootstrap/Carousel';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
   validateEmail,
   validateEmailStorage,
@@ -7,11 +10,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import signupBackground1 from "../../assets/signup-background1.jpg";
+import signupBackground2 from "../../assets/signup-background2.jpg";
 //import './SignUp.css';
 
 function SignUp(props) {
   //tracking sign up
   const [isSignedUp, setIsSignedUp] = useState(false);
+
+  //tracking date
+  const [dateJoined, setDateJoined] = useState('');
+  const current = new Date();
 
   //for navigation
   const navigate = useNavigate();
@@ -21,6 +29,7 @@ function SignUp(props) {
     name: "",
     email: "",
     password: "",
+    dateJoined: ""
   });
   //State to store error messages
   const [errors, setErrors] = useState({
@@ -84,8 +93,15 @@ function SignUp(props) {
     //if not create an empty array
     const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
+    //setting up yhe date
+    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+    setDateJoined(date);
+
     //creating a new user
-    const newUser = { ...values, password: hashPassword };
+    const newUser = { ...values,
+      password: hashPassword,
+      dateJoined: date
+    };
 
     //updating the users
     const updatedUsers = [...existingUsers, newUser];
@@ -105,20 +121,20 @@ function SignUp(props) {
     setTimeout(() => {
       props.loginUser(newUser.name);
       navigate("/");
-    });
+    },2000);
     return;
   };
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-4">
       <div className="row">
-        <div className="col-md-5">
+        <div className="col-md-6">
           <h3 className="mb-3" style={{ color: "red" }}>
             Sign Up
           </h3>
           <h5 style={{ fontStyle: "italic" }}>for new deals</h5>
           <form>
-            <div className="form-group mb-1">
+            <div className="form-group mb-3">
               <label htmlFor="name">Name</label>
               <input
                 type="text"
@@ -130,7 +146,7 @@ function SignUp(props) {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group mb-1">
+            <div className="form-group mb-3">
               <label htmlFor="email">Email address</label>
               <input
                 type="email"
@@ -145,7 +161,7 @@ function SignUp(props) {
                 <div className="text-danger">{errors.emailError}</div>
               )}
             </div>
-            <div className="form-group mb-1">
+            <div className="form-group mb-3">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -176,14 +192,30 @@ function SignUp(props) {
             </button>
           </form>
         </div>
-        <div className="col-md-7 d-flex align-items-center justify-content-center">
+        {/* <div className="col-md-7 d-flex align-items-center justify-content-center">
           <img
             src={signupBackground1}
             alt="Sign Up"
             className="img-fluid"
-            style={{ maxWidth: "300px", height: "300px" }}
+            style={{ maxWidth: "300px", height: "300px", marginBottom: "50px" }}
           />
-        </div>
+        </div> */}
+        <Carousel className="imf-fluid" style={{maxWidth:"500px", height:"300px", marginBottom:"100px"}}>
+          <Carousel.Item>
+            <img className="d-block w-100" src={signupBackground1} alt="First Slide" />
+            <Carousel.Caption>
+              {/* <h3>First Slide Label</h3> */}
+              <p>We hanlde with Care</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img className="d-block w-100" src={signupBackground2} alt="Second Slide" />
+            <Carousel.Caption>
+              {/* <h3>Second Slide Label</h3> */}
+              <p>Just order and wait for a while we’ll be there at your door.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
         {isSignedUp && (
           <div className="text-center">
             <p>Signed Up successfully. Redirecting to Home page...</p>

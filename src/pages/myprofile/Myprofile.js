@@ -18,9 +18,35 @@ function MyProfile(props){
             setUser(activeUser);
         } else {
             // Redirect or handle the absence of an active user
-            //navigate('/signin');
+            navigate('/');
         }
     }, [navigate]);
+
+    const handleNewPasswordChange = (e) => {
+      setNewPassword(e.target.value);
+      // Clear the error message when the user starts typing in the New Password field
+      setError('');
+    };
+
+    const handleConfirmPasswordChange = (e) => {
+      setConfirmPassword(e.target.value);
+      // Clear the error message when the user starts typing in the Confirm New Password field
+      setError('');
+    };
+
+    const handleDelete = () => {
+      const isConfirmed = window.confirm("This action cannot be undone!");
+      if(isConfirmed){
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const updateDeleteUser = users.filter(u => u.email !== user.email);
+
+        localStorage.setItem('users',JSON.stringify(updateDeleteUser));
+        localStorage.removeItem('activeUser');
+
+        navigate('/');
+        window.location.reload();
+      }
+    }
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -47,11 +73,14 @@ function MyProfile(props){
         
         //changing the state of isUpdated
         setIsUpdated(true);
-        // Redirect or show a success message
+        
+        //setting a timer for profile update message and reverting the isUpdated state
         setTimeout( () => {
             setIsUpdated(false);
+            setNewPassword('');
+            setConfirmPassword('');
         }, 2000);
-        alert('Profile updated successfully!');
+//        alert('Profile updated successfully!');
     };
 
     return (
@@ -77,7 +106,9 @@ function MyProfile(props){
                     <input type="password" 
                     className="form-control" 
                     id="newPassword" value={newPassword} 
-                    onChange={(e) => setNewPassword(e.target.value)} />
+                    onChange={handleNewPasswordChange}
+                    required
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="confirmPassword">Confirm New Password</label>
@@ -85,14 +116,18 @@ function MyProfile(props){
                     className="form-control" 
                     id="confirmPassword" 
                     value={confirmPassword} 
-                    onChange={(e) => setConfirmPassword(e.target.value)} />
+                    onChange={handleConfirmPasswordChange} 
+                    required
+                    />
                 </div>
                 {error && <p className="text-danger">{error}</p>}
-                <div className="my-3">
-                <button type="submit" className="btn btn-primary mr-3">Save Changes</button>
-                <button type="submit" className="btn btn-primary ms-3" onClick={() => navigate("/")}>Back</button>
-        
+                <div className="my-3 d-flex justify-content-between">
+                <button type="submit" className="btn btn-primary">Save Changes</button>
+                <div>
+                    <button type="button" className="btn btn-secondary ms-3" onClick={() => navigate("/")}>Back</button>
+                    <button type="button" className="btn btn-danger ms-3" onClick={handleDelete}>Delete Account</button>
                 </div>
+            </div>
             </form>
             {isUpdated &&(
                     <div className="text-center">
