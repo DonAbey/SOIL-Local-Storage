@@ -126,15 +126,15 @@ function SignUp(props) {
   };
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-4">
       <div className="row">
-        <div className="col-md-5">
+        <div className="col-md-6">
           <h3 className="mb-3" style={{ color: "red" }}>
             Sign Up
           </h3>
           <h5 style={{ fontStyle: "italic" }}>for new deals</h5>
           <form>
-            <div className="form-group mb-1">
+            <div className="form-group mb-3">
               <label htmlFor="name">Name</label>
               <input
                 type="text"
@@ -146,7 +146,7 @@ function SignUp(props) {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group mb-1">
+            <div className="form-group mb-3">
               <label htmlFor="email">Email address</label>
               <input
                 type="email"
@@ -161,7 +161,7 @@ function SignUp(props) {
                 <div className="text-danger">{errors.emailError}</div>
               )}
             </div>
-            <div className="form-group mb-1">
+            <div className="form-group mb-3">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
