@@ -27,5 +27,9 @@ const getFarmProducts = () => {
     return farmProducts;
 }
 
-export {initProductData,getFarmProducts};
+const getAllProducts = () => {
+    return organicProducts.concat(farmProducts)
+}
+
+export {initProductData,getFarmProducts,getAllProducts};
 

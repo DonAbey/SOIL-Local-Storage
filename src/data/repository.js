@@ -20,5 +20,8 @@ const getData = (key) => {
 function removeUser() {
     localStorage.removeItem(USER_KEY);
   }
-  
-export {getUser,getData,removeUser}
+
+const setData = (key,data) => {
+    localStorage.setItem(key,data)
+}
+export {getUser,getData,removeUser,setData}

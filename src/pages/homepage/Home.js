@@ -21,7 +21,7 @@ const Home = ({ username }) => {
       <CarouselSection />
       <Banner
         text="Organic product specials & small-scale farming"
-        linkto="special"
+        linkto="shop-online"
       />
       <SectionHeader
         title="Most Popular Products..."

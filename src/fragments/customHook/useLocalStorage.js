@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 const useLocalStorage = (storageKey,Key) => {
+    localStorage.setItem(storageKey,JSON.stringify(Key))
     useEffect(()=> {
         localStorage.setItem(storageKey,JSON.stringify(Key))
     },[Key])
