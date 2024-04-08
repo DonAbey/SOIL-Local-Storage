@@ -3,13 +3,8 @@ import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import Home from "../homepage/Home";
 import Header from "../../fragments/header/Header";
 import Footer from "../../fragments/footer/Footer";
-<<<<<<< HEAD
-import Myprofile from "../myprofile/MyProfile";
-import { getUser } from "../../data/repository";
-=======
 import Myprofile from "../myprofile/Myprofile";
 import { getUser,removeUser } from "../../data/repository";
->>>>>>> 83d2b569a83e234588f9c176d19d1a654c56455d
 import SpecialDeals from "../special-deals/Special-deals";
 import Cart from "../cart/Cart";
 import { initProductData } from "../../data/productData";

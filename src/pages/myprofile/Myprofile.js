@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import bcrypt from 'bcryptjs';
 import { validatePassword } from '../../data/verify';
 
-function MyProfile(){
+function MyProfile(props){
 
     const navigate = useNavigate();
     const [user, setUser] = useState({ name: '', email: '', password: '', dateJoined:'' });
@@ -55,7 +55,7 @@ function MyProfile(){
     };
 
     return (
-        <div className="container">
+        <div className="container mt-3">
             <h2>My Profile</h2>
             <p>Joined on {user.dateJoined}</p>
             <form onSubmit={handleSave}>
@@ -88,8 +88,11 @@ function MyProfile(){
                     onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
                 {error && <p className="text-danger">{error}</p>}
+                <div className="my-3">
                 <button type="submit" className="btn btn-primary mr-3">Save Changes</button>
-                <button type="submit" className="btn btn-primary" onClick={() => navigate("/home")}>Back</button>
+                <button type="submit" className="btn btn-primary ms-3" onClick={() => navigate("/")}>Back</button>
+        
+                </div>
             </form>
             {isUpdated &&(
                     <div className="text-center">

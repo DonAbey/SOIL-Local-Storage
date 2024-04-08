@@ -44,7 +44,7 @@ function SignIn(props) {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-lg-4 col-md-6 col-sm-8">
-                    <div className="text-center mb-4">
+                    <div className="text-center mb-4 mt-5">
                         <h2>Welcome back</h2>
                     </div>
                     <form>
@@ -60,7 +60,7 @@ function SignIn(props) {
                         </div>
                         <div className="form-group">
                             <input 
-                                className="form-control" 
+                                className="form-control my-3" 
                                 placeholder="Password" 
                                 type="password" 
                                 name="password" 
@@ -69,7 +69,7 @@ function SignIn(props) {
                             />
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-primary" onClick={handleClick}>SignIn</button>
+                            <button className="btn btn-primary mb-3" onClick={handleClick}>SignIn</button>
                         </div>
                         {isSignedIn &&(
                             <div className="text-center">
