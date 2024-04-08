@@ -18,7 +18,7 @@ function MyProfile(props){
             setUser(activeUser);
         } else {
             // Redirect or handle the absence of an active user
-            //navigate('/signin');
+            navigate('/');
         }
     }, [navigate]);
 
@@ -44,6 +44,7 @@ function MyProfile(props){
         localStorage.removeItem('activeUser');
 
         navigate('/');
+        window.location.reload();
       }
     }
 

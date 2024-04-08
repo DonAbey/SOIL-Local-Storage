@@ -1,4 +1,7 @@
 import React, { useEffect, useState, Link } from "react";
+import Carousel from 'react-bootstrap/Carousel';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
   validateEmail,
   validateEmailStorage,
@@ -7,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import signupBackground1 from "../../assets/signup-background1.jpg";
+import signupBackground2 from "../../assets/signup-background2.jpg";
 //import './SignUp.css';
 
 function SignUp(props) {
@@ -188,14 +192,30 @@ function SignUp(props) {
             </button>
           </form>
         </div>
-        <div className="col-md-7 d-flex align-items-center justify-content-center">
+        {/* <div className="col-md-7 d-flex align-items-center justify-content-center">
           <img
             src={signupBackground1}
             alt="Sign Up"
             className="img-fluid"
-            style={{ maxWidth: "300px", height: "300px" }}
+            style={{ maxWidth: "300px", height: "300px", marginBottom: "50px" }}
           />
-        </div>
+        </div> */}
+        <Carousel className="imf-fluid" style={{maxWidth:"500px", height:"300px", marginBottom:"100px"}}>
+          <Carousel.Item>
+            <img className="d-block w-100" src={signupBackground1} alt="First Slide" />
+            <Carousel.Caption>
+              {/* <h3>First Slide Label</h3> */}
+              <p>We hanlde with Care</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img className="d-block w-100" src={signupBackground2} alt="Second Slide" />
+            <Carousel.Caption>
+              {/* <h3>Second Slide Label</h3> */}
+              <p>Just order and wait for a while we’ll be there at your door.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
         {isSignedUp && (
           <div className="text-center">
             <p>Signed Up successfully. Redirecting to Home page...</p>
