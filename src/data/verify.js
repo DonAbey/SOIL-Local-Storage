@@ -34,7 +34,7 @@ function verifySignIn(email, password){
 
     if(user){
         if(bcrypt.compareSync(password, user.password)){
-            return {name: user.name, email: user.email, password: user.password}
+            return {name: user.name, email: user.email, password: user.password, dateJoined: user.dateJoined}
         }
     }
     return null;

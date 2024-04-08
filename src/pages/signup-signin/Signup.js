@@ -13,6 +13,10 @@ function SignUp(props) {
   //tracking sign up
   const [isSignedUp, setIsSignedUp] = useState(false);
 
+  //tracking date
+  const [dateJoined, setDateJoined] = useState('');
+  const current = new Date();
+
   //for navigation
   const navigate = useNavigate();
 
@@ -21,6 +25,7 @@ function SignUp(props) {
     name: "",
     email: "",
     password: "",
+    dateJoined: ""
   });
   //State to store error messages
   const [errors, setErrors] = useState({
@@ -84,8 +89,15 @@ function SignUp(props) {
     //if not create an empty array
     const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
+    //setting up yhe date
+    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+    setDateJoined(date);
+
     //creating a new user
-    const newUser = { ...values, password: hashPassword };
+    const newUser = { ...values,
+      password: hashPassword,
+      dateJoined: date
+    };
 
     //updating the users
     const updatedUsers = [...existingUsers, newUser];
@@ -105,7 +117,7 @@ function SignUp(props) {
     setTimeout(() => {
       props.loginUser(newUser.name);
       navigate("/");
-    });
+    },2000);
     return;
   };
 
