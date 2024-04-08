@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import Home from "../homepage/Home";
 import Header from "../../fragments/header/Header";
 import Footer from "../../fragments/footer/Footer";
-import Myprofile from "../myprofile/Myprofile";
+import Myprofile from "../myprofile/MyProfile";
 import { getUser } from "../../data/repository";
 import SpecialDeals from "../special-deals/Special-deals";
 import Cart from "../cart/Cart";
