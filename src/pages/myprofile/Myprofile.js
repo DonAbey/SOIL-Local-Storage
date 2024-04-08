@@ -34,6 +34,19 @@ function MyProfile(props){
       setError('');
     };
 
+    const handleDelete = () => {
+      const isConfirmed = window.confirm("This action cannot be undone!");
+      if(isConfirmed){
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const updateDeleteUser = users.filter(u => u.email !== user.email);
+
+        localStorage.setItem('users',JSON.stringify(updateDeleteUser));
+        localStorage.removeItem('activeUser');
+
+        navigate('/');
+      }
+    }
+
     const handleSave = (e) => {
         e.preventDefault();
 
@@ -103,11 +116,13 @@ function MyProfile(props){
                     onChange={handleConfirmPasswordChange} />
                 </div>
                 {error && <p className="text-danger">{error}</p>}
-                <div className="my-3">
-                <button type="submit" className="btn btn-primary mr-3">Save Changes</button>
-                <button type="button" className="btn btn-primary ms-3" onClick={() => navigate("/")}>Back</button>
-        
+                <div className="my-3 d-flex justify-content-between">
+                <button type="submit" className="btn btn-primary">Save Changes</button>
+                <div>
+                    <button type="button" className="btn btn-secondary ms-3" onClick={() => navigate("/")}>Back</button>
+                    <button type="button" className="btn btn-danger ms-3" onClick={handleDelete}>Delete Account</button>
                 </div>
+            </div>
             </form>
             {isUpdated &&(
                     <div className="text-center">
