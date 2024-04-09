@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./Product";
 
-const ProductList = ({ list }) => {
+const ProductList = ({ list,handleClick }) => {
   let products = list||[];
   return (
     <div className="container">
@@ -9,7 +9,7 @@ const ProductList = ({ list }) => {
         {products.map((item) => {
           return (
             <div className="col">
-              <Product name={item.name} price={item.price} img={item.img} productId={item.id}/>
+              <Product handleClick={handleClick} name={item.name} price={item.price} img={item.img} productId={item.id} />
             </div>
           );
         })}

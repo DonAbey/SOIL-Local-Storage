@@ -12,6 +12,8 @@ const getUser = () => {
     }
     return local
 }
+
+
 const getData = (key) => {
     let items = localStorage.getItem((key))
     return JSON.parse(items)

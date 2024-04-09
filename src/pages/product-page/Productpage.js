@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import "./productstyle.css";
 import { getData } from "../../data/repository";
 import Button from "react-bootstrap/esm/Button";
-const Productpage = () => {
+import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
+import { getAllProducts } from "../../data/productData";
+const Productpage = ({ handleClick }) => {
+  useScrollToTop();
+
   const { urlId } = useParams();
-  const productData = getData("Products");
+  const productData = getAllProducts();
   //filter products from the url and parse it to Integer to match with the product ID
   const findProduct = productData.filter(
     (product) => product.id === parseInt(urlId, 10)
@@ -15,6 +19,12 @@ const Productpage = () => {
     return "Product not found";
   }
   const { id, name, price, img } = findProduct[0];
+  const productInfo = {
+    name: name,
+    price: price,
+    img: img,
+    id: id,
+  };
   return (
     <div>
       <nav aria-label="breadcrumb" className="ms-5 mt-5">
@@ -39,11 +49,15 @@ const Productpage = () => {
           <div class="col">
             <p className="fs-1 fw-bolder">{name}</p>
             <p className="fs-3">$ {price}</p>
-            <button className="addToCartbtn rounded-pill fw-bold"><i class="fi fi-rr-shopping-cart-add"></i> Add To Cart</button>
+            <button
+              onClick={()=>handleClick(productInfo)}
+              className="addToCartbtn rounded-pill fw-bold"
+            >
+              <i class="fi fi-rr-shopping-cart-add"></i> Add To Cart
+            </button>
           </div>
         </div>
       </div>
-
       <div className="addspace"></div>
     </div>
   );

@@ -121,7 +121,7 @@ function SignUp(props) {
     setTimeout(() => {
       props.loginUser(newUser.name);
       navigate("/");
-    },2000);
+    });
     return;
   };
 

@@ -7,7 +7,7 @@ import useLocalStorage from "../../fragments/customHook/useLocalStorage";
 import SectionHeader from "../../components/SectionHeader";
 import Banner from "../../components/Banner";
 import {useScrollToTop} from "../../fragments/customHook/useScrollToTop";
-const Home = ({ username }) => {
+const Home = ({ username,handleClick}) => {
   const [products, setProducts] = useState(getData("Products"));
   const showMostPopular = products != null ? products.slice(0, 4) : ""; /*fake first 5 products */
   useScrollToTop();
@@ -25,10 +25,10 @@ const Home = ({ username }) => {
       />
       <SectionHeader
         title="Most Popular Products..."
-        link="/product-page"
+        link="/shop-online"
         subtitle="View all products"
       />
-      <ProductList list={showMostPopular} />
+      <ProductList list={showMostPopular} handleClick={handleClick} />
     </div>
   );
 };

@@ -1,18 +1,18 @@
 import React from "react";
 import Product from "../../components/Product";
 import { getData } from "../../data/repository";
-const Content = (props) => {
+const Content = ({handleClick,productId,head,content}) => {
   const localStorageData = getData("SpecialProducts");
   //find matching product id from the localstorage and return the component
   const renderProduct = () => {
-    return props.productId.map((prodId) => {
+    return productId.map((prodId) => {
       let local = localStorageData.filter(
         (localData) => localData.id === prodId
       )[0]
         return (
           <>
           {/* passing props to the product component */}
-            <Product {...local}/>
+            <Product handleClick={handleClick} {...local} productId={local.id}/>
             <div className="p-4"></div>
           </>
         );
@@ -20,8 +20,8 @@ const Content = (props) => {
   };
   return (
     <div class="col">
-      <h2>{props.head}</h2>
-      <p>{props.content}</p>
+      <h2>{head}</h2>
+      <p>{content}</p>
       <div className="d-flex">
         {renderProduct()}
       </div>

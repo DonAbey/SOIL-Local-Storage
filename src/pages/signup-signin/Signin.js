@@ -33,7 +33,7 @@ function SignIn(props) {
             setTimeout( () =>{
                 props.loginUser(verifiedUser.name);
                 navigate("/")
-            },2000);
+            });
         }else{
             setIsSignedIn(false)
         }
@@ -75,7 +75,7 @@ function SignIn(props) {
                                 <p>Logging In</p>
                              </div>
                         )}
-                        {isSignedIn == false && (
+                        {isSignedIn === false && (
                             <div className="text-center mt-3">
                                 <p>Invalid email or password</p>
                             </div>

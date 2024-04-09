@@ -2,7 +2,7 @@ import React from 'react'
 import {useScrollToTop} from "../../fragments/customHook/useScrollToTop";
 import { getAllProducts } from '../../data/productData';
 import ProductList from '../../components/ProductList';
-const ShopOnline = () => {
+const ShopOnline = ({handleClick}) => {
   useScrollToTop();
   const products = getAllProducts();
   console.log(products)
@@ -11,7 +11,7 @@ const ShopOnline = () => {
     <div className="text-center mt-5">
     <h2>Shop Online</h2>
     <div className="my-5"></div>
-    <ProductList list={products}/>
+    <ProductList list={products} handleClick={handleClick}/>
   </div>
     )
 }
