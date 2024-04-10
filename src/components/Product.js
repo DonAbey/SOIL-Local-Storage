@@ -14,7 +14,7 @@ const Product = ({name,price,img,productId,handleClick}) => {
      <img src="https://picsum.photos/200"/>
      <h4 className="name mt-3">{name}</h4>
       <div className="price">$ {price}</div></Link>
-      <button onClick={()=>handleClick(productInfo)} className="addCart"><i class="fi fi-rr-shopping-cart-add"></i> Add To Cart</button>
+      <button onClick={()=>handleClick(productInfo,"add")} className="addCart"><i class="fi fi-rr-shopping-cart-add"></i> Add To Cart</button>
     </div>
 
   )

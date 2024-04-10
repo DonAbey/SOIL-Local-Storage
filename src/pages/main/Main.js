@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { BrowserRouter as Link, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Home from "../homepage/Home";
+import Alert from 'react-bootstrap/Alert';
 import Header from "../../fragments/header/Header";
 import Footer from "../../fragments/footer/Footer";
 import Myprofile from "../myprofile/Myprofile";
@@ -18,7 +19,6 @@ import useCart from "../../fragments/customHook/useCart";
 import useCheckLogin from "../../fragments/customHook/useCheckLogin";
 const Main = () => {
   const [username, setUsername] = useState(getUser());
-  const [isLoggedIn, setIsLoggedIn] = useState(!!username);
   const navigate = useNavigate();
   const loginUser = (username) => {
     setUsername(username);
@@ -33,14 +33,19 @@ const Main = () => {
   useLocalStorage("Products", initProducts);
   //cart custom hook
   const [productSelected, setProductSelected] = useState(null);
-  const handleClick = (product) => {
-    if (username === null) {
-      return navigate("/login")
-    } else {
+  //handle click and pass the status add or remove to the custom hook cart
+  const [status,setStatus] = useState(null)
+  const handleClick = (product,action) => {
+    setStatus(action)
+     if (username === null) {
+      alert("You need to log in first")
+      navigate("/login")
+     }
+     else {
       setProductSelected(product);
-    }
-  };
-  useCart(productSelected);
+     }
+    } 
+  const cart = useCart(productSelected,status);
   return (
     <>
         <Header username={username} logout={logout} />

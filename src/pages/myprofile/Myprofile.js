@@ -79,7 +79,7 @@ function MyProfile(props){
             setIsUpdated(false);
             setNewPassword('');
             setConfirmPassword('');
-        }, 2000);
+        });
 //        alert('Profile updated successfully!');
     };
 

@@ -5,7 +5,7 @@ const organicProducts = [
     { id: 3, name: "Spinach", price: 3.49, image: "" },
     { id: 4, name: "Tomatoes", price: 2.79, image: "" },
     { id: 5, name: "Carrots", price: 1.49, image: "" },
-    { id: 6, name: "Avocados", price: 4.99, image: "" },
+    { id: 6, name: "Avocados", price: 33.99, image: "" },
     { id: 7, name: "Quinoa", price: 5.99, image: "" },
     { id: 8, name: "Blueberries", price: 6.99, image: "" },
     { id: 9, name: "Kale", price: 3.99, image: "" },
