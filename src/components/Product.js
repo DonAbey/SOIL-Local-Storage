@@ -9,7 +9,7 @@ const Product = ({name,price,img,productId,handleClick}) => {
     id:productId
   }
   return (
-    <div className="item text-center mb-4">
+    <div className="item text-center font-monospace mb-4">
       <Link className={"menu-style"} to={`/product-page/${productId}`}>
      <img src="https://picsum.photos/200"/>
      <h4 className="name mt-3">{name}</h4>

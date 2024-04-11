@@ -41,7 +41,7 @@ const Productpage = ({ handleClick }) => {
         </ol>
       </nav>
 
-      <div class="container my-5">
+      <div class="container my-5 font-monospace">
         <div class="row row-cols-2">
           <div class="col">
             <img src="https://picsum.photos/300/300" />

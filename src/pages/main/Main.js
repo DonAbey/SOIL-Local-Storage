@@ -19,6 +19,8 @@ import useCart from "../../fragments/customHook/useCart";
 import useCheckLogin from "../../fragments/customHook/useCheckLogin";
 import LoginLogout from "./LoginLogout";
 import HandleClick from "./HandleClick";
+import Checkout from "../checkoutpage/Checkout";
+
 const Main = () => {
   const {username,loginUser,logout,getActiveUser} = LoginLogout();
   //if initdata changes -> call use effect to store the products in the local storage again
@@ -38,12 +40,13 @@ const Main = () => {
       setProductSelected(product);
      }
     } 
-  const [items,setItems] = useCart(productSelected,"add")
+  const [items,setItems,activeUserCart] = useCart(productSelected,"add")
   return (
     <>
         <Header username={username} logout={logout} />
+
         <Routes>
-          <Route path="/" element={<Home handleClick={handleClick} />} />
+          <Route path="/" element={<Home handleClick={handleClick}/>} />
           <Route path="/login" element={<Signin loginUser={loginUser} />} />
           <Route path="/Register" element={<SignUp loginUser={loginUser} />} />
           <Route path="/profile" element={<Myprofile />} />
@@ -55,6 +58,7 @@ const Main = () => {
             path="/shop-online"
             element={<ShopOnline handleClick={handleClick} />}
           />
+          <Route path="/checkout" element={<Checkout items={items} currentUser={getActiveUser()}/>} />
           <Route path="/cart" element={<Cart currentUser={getActiveUser()} updateCartChanged={setItems}/>} />
           <Route path="/product-page/:urlId" element={<ProductPage handleClick={handleClick} />} />
         </Routes>

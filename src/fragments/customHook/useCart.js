@@ -15,9 +15,11 @@ const useCart = (productSelected, status) => {
     let newData = verifyAndAddProduct(product);
     if (newData) {
       setItems([...items, newData]);
-      alert("Added successfully");
+     alert("Added successfully");
+      return true
     } else {
       alert("You have already added this product to the cart!");
+      return false
     }
   };
 
