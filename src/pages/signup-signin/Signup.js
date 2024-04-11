@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Link } from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useScrollToTop} from "../../fragments/customHook/useScrollToTop";
 
 import {
   validateEmail,
@@ -14,6 +15,7 @@ import signupBackground2 from "../../assets/signup-background2.jpg";
 //import './SignUp.css';
 
 function SignUp(props) {
+  useScrollToTop();
   //tracking sign up
   const [isSignedUp, setIsSignedUp] = useState(false);
 

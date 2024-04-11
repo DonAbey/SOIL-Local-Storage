@@ -7,35 +7,41 @@ const useCart = (productSelected, status) => {
   const currentUser = getData("activeUser");
   //fetching data from localstorage
   const [items, setItems] = useState(getData("all_users_cart_data") || []);
-  console.log(status);
+  const activeUserCart = items.filter(
+    (user) => user.email === currentUser.email
+  );
   const addProductCart = (product) => {
     //check if a user has added the same product
     let newData = verifyAndAddProduct(product);
     if (newData) {
       setItems([...items, newData]);
+      alert("Added successfully");
+    } else {
+      alert("You have already added this product to the cart!");
     }
   };
 
   const deleteProductCart = (data) => {
     //set the items again but excluded the data passed to this function
-    console.log(data)
     setItems(
       items.filter(
         (item) =>
           !(
-            item.email === currentUser.email &&
-            item.cart_product.id === data.id
+            item.email === currentUser.email && item.cart_product.id === data.id
           )
       )
     );
-    console.log(items)
   };
 
   useEffect(() => {
     if (status === "add") {
-      addProductCart(productSelected);
+      if (productSelected !== null) {
+        addProductCart(productSelected);
+      }
     } else if (status === "delete") {
-      deleteProductCart(productSelected)
+      if (productSelected !== null) {
+        deleteProductCart(productSelected);
+      }
     }
   }, [productSelected]);
 
@@ -43,8 +49,8 @@ const useCart = (productSelected, status) => {
     localStorage.setItem("all_users_cart_data", JSON.stringify(items));
   }, [items]);
 
-  console.log("O", items);
-
+  console.log("addeddd", items);
+  console.log("deleted", items);
   //check if the user already added this product?
   const verifyAndAddProduct = (product) => {
     if (product !== null) {
@@ -64,7 +70,7 @@ const useCart = (productSelected, status) => {
       }
     }
   };
-  return items;
+  return [items, setItems,activeUserCart];
 };
 
 export default useCart;

@@ -17,27 +17,20 @@ import { SignUp } from "../signup-signin/Signup";
 import ProductPage from "../product-page/ProductPage";
 import useCart from "../../fragments/customHook/useCart";
 import useCheckLogin from "../../fragments/customHook/useCheckLogin";
+import LoginLogout from "./LoginLogout";
+import HandleClick from "./HandleClick";
 const Main = () => {
-  const [username, setUsername] = useState(getUser());
-  const navigate = useNavigate();
-  const loginUser = (username) => {
-    setUsername(username);
-    console.log(username);
-  };
-  const logout = () => {
-    removeUser();
-    setUsername(null);
-  };
+  const {username,loginUser,logout,getActiveUser} = LoginLogout();
   //if initdata changes -> call use effect to store the products in the local storage again
   const [initProducts, setInitProducts] = useState(initProductData());
   useLocalStorage("Products", initProducts);
-  //cart custom hook
+ 
+  const navigate = useNavigate();
+
   const [productSelected, setProductSelected] = useState(null);
   //handle click and pass the status add or remove to the custom hook cart
-  const [status,setStatus] = useState(null)
-  const handleClick = (product,action) => {
-    setStatus(action)
-     if (username === null) {
+  const handleClick = (product) => {
+    if (username === null) {
       alert("You need to log in first")
       navigate("/login")
      }
@@ -45,7 +38,7 @@ const Main = () => {
       setProductSelected(product);
      }
     } 
-  const cart = useCart(productSelected,status);
+  const [items,setItems] = useCart(productSelected,"add")
   return (
     <>
         <Header username={username} logout={logout} />
@@ -62,7 +55,7 @@ const Main = () => {
             path="/shop-online"
             element={<ShopOnline handleClick={handleClick} />}
           />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart currentUser={getActiveUser()} updateCartChanged={setItems}/>} />
           <Route path="/product-page/:urlId" element={<ProductPage handleClick={handleClick} />} />
         </Routes>
         <Footer />

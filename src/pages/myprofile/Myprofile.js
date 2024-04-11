@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bcrypt from 'bcryptjs';
 import { validatePassword } from '../../data/verify';
-
+import "./style.css"
 function MyProfile(props){
 
     const navigate = useNavigate();
@@ -122,7 +122,7 @@ function MyProfile(props){
                 </div>
                 {error && <p className="text-danger">{error}</p>}
                 <div className="my-3 d-flex justify-content-between">
-                <button type="submit" className="btn btn-primary">Save Changes</button>
+                <button type="submit" className="btn btn-primary btn-save">Save Changes</button>
                 <div>
                     <button type="button" className="btn btn-secondary ms-3" onClick={() => navigate("/")}>Back</button>
                     <button type="button" className="btn btn-danger ms-3" onClick={handleDelete}>Delete Account</button>

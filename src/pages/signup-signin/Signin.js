@@ -1,8 +1,11 @@
 import React, { useCallback, useState } from "react";
 import {verifySignIn} from "../../data/verify";
 import { useNavigate } from "react-router-dom";
-
+import {useScrollToTop} from "../../fragments/customHook/useScrollToTop";
+import './style.css';
 function SignIn(props) {
+    useScrollToTop();
+
     //state for signIn
     const [isSignedIn, setIsSignedIn] = useState(null);
 
@@ -68,7 +71,7 @@ function SignIn(props) {
                             />
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-primary mb-3" onClick={handleClick}>SignIn</button>
+                            <button className="btn mb-3 btn-login" onClick={handleClick}>SignIn</button>
                         </div>
                         {isSignedIn &&(
                             <div className="text-center">

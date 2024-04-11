@@ -5,9 +5,14 @@
 }
 .header-item-style{
     text-decoration: none;
-    color:rgb(0, 0, 0);
+    color:#DADDC4;
 }
-
+.username-style {
+    color:#DADDC4;
+}
+.header-item-style:hover {
+    color:rgb(0, 0, 0) !important;
+}
 .soil-logo {
     color:rgb(218, 221, 196);
     text-decoration: none !important;

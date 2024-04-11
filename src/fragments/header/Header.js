@@ -42,16 +42,16 @@ const Header = (props) => {
             </li>
             }
             {props.username !== null &&
-            <li className="nav-item me-5">
+            <li className="nav-item me-5 username-style">
               {props.username}
                <Link to="/profile" className={"ms-4 header-item-style me-4"}>
-                <i className="fi fi-rr-shopping-cart"></i> Profile 
+                <i className="fi fi-rs-user-pen"></i> Profile 
               </Link>
               <Link to="/cart" className={"header-item-style me-4"}>
                 <i className="fi fi-rr-shopping-cart "></i> Cart
               </Link>
               <Link to="/login" onClick={props.logout} className={"header-item-style"}>
-                <i className="fi fi-rr-shopping-cart "></i> Logout
+                <i className="fi fi-rs-sign-out-alt"></i> Logout
               </Link>
             </li>
             }
