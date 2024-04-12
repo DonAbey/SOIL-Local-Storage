@@ -112,12 +112,7 @@ const Checkout = ({ items, currentUser }) => {
       }
     }
   };
-  console.log(input.exp)
-  console.log(input.cvv)
 
-  console.log(input.exp);
-  const date = new Date();
-  console.log(date.getMonth() + 1);
   return (
     <div>
       <form>
