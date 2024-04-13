@@ -1,13 +1,13 @@
-import React from 'react'
-import {useState} from 'react'
-import { getData } from '../../data/repository'
+import React from "react";
+import { useState } from "react";
+import { getData } from "../../data/repository";
 const useCheckOut = () => {
-    const [clickCheckOut,setClickCheckOut] = useState(false)
-    const handleCheckOutClick = (isClickCheckout) => {
-        setClickCheckOut(isClickCheckout)  
-    }
-   
-  return [handleCheckOutClick,clickCheckOut];
-}
+  const [clickCheckOut, setClickCheckOut] = useState(false);
+  const handleCheckOutClick = (isClickCheckout) => {
+    setClickCheckOut(isClickCheckout);
+  };
 
-export default useCheckOut
+  return [handleCheckOutClick, clickCheckOut];
+};
+
+export default useCheckOut;

@@ -3,7 +3,7 @@ import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
 import { getAllProducts } from "../../data/productData";
 import ProductList from "../../components/ProductList";
 import { Link } from "react-router-dom";
-const ShopOnline = ({ handleClick,items }) => {
+const ShopOnline = ({ handleClick, items }) => {
   return (
     <div>
       <nav aria-label="breadcrumb" className="ms-5 mt-5">
@@ -11,9 +11,7 @@ const ShopOnline = ({ handleClick,items }) => {
           <li className="breadcrumb-item ">
             <Link to="/">Home</Link>
           </li>
-          <li className="breadcrumb-item active">
-            Shop Online
-          </li>
+          <li className="breadcrumb-item active">Shop Online</li>
         </ol>
       </nav>
       <div className="text-center mt-5">

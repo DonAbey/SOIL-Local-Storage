@@ -6,14 +6,15 @@ const Product = (props) => {
   const productInfo = {
     name:props.name,
     price:props.price,
-    img:props.img,
+    image:props.image,
     stock:props.stock,
     id:props.productId
   }
+  console.log(props.image)
   return (
     <div className="item text-center font-monospace mb-4">
-      <Link className={"menu-style"} to={`/product-page/${props.productId}`}>
-     <img src="https://picsum.photos/200"/>
+      <Link className={"menu-style"} to={`/product-page/${props.productId}`}>    
+     <img src={props.image} alt="" />
      <h4 className="name mt-3">{props.name}</h4>
       <div className="price">$ {props.price}</div></Link>
       {props.stock  > 0 ?       

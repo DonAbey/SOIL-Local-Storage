@@ -10,7 +10,7 @@ const ProductList = ({ list,handleClick }) => {
         {products.map((item) => {
           return (
             <div className="col">
-              <Product handleClick={handleClick} name={item.name} price={item.price} img={item.img} productId={item.id} stock={item.stock}/>
+              <Product handleClick={handleClick} name={item.name} price={item.price} image={item.image} productId={item.id} stock={item.stock}/>
             </div>
           );
         })}

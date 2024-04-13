@@ -7,7 +7,6 @@ import Button from "react-bootstrap/esm/Button";
 import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
 import { getAllProducts } from "../../data/productData";
 const Productpage = ({ handleClick }) => {
-
   const { urlId } = useParams();
   const productData = getAllProducts();
   //filter products from the url and parse it to Integer to match with the product ID
@@ -17,14 +16,14 @@ const Productpage = ({ handleClick }) => {
   if (findProduct.length === 0) {
     return "Product not found";
   }
-  const { id, name, price, img,stock } = findProduct[0];
-  console.log(stock)
+  const { id, name, price, image, stock } = findProduct[0];
+  console.log(stock);
   const productInfo = {
     name: name,
     price: price,
-    img: img,
+    image: image,
     id: id,
-    stock:stock
+    stock: stock,
   };
   return (
     <div>
@@ -50,20 +49,19 @@ const Productpage = ({ handleClick }) => {
           <div class="col">
             <p className="fs-1 fw-bolder">{name}</p>
             <p className="fs-3">$ {price}</p>
-            
-            {stock > 0 ?    <button
-              onClick={()=>handleClick(productInfo)}
-              className="addToCartbtn rounded-pill"
-            >
-              <i class="fi fi-rr-shopping-cart-add"></i> Add To Cart
-            </button>:   
-            <button
-              
-              className="addToCartbtn rounded-pill disabled"
-            >
-              <i class="fi fi-rr-shopping-cart-add"></i> Out of stock
-            </button>}
-            
+
+            {stock > 0 ? (
+              <button
+                onClick={() => handleClick(productInfo)}
+                className="addToCartbtn rounded-pill"
+              >
+                <i class="fi fi-rr-shopping-cart-add"></i> Add To Cart
+              </button>
+            ) : (
+              <button className="addToCartbtn rounded-pill disabled">
+                <i class="fi fi-rr-shopping-cart-add"></i> Out of stock
+              </button>
+            )}
           </div>
         </div>
       </div>

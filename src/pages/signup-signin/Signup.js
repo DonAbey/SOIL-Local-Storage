@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Link } from "react";
-import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {useScrollToTop} from "../../fragments/customHook/useScrollToTop";
+import Carousel from "react-bootstrap/Carousel";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
 
 import {
   validateEmail,
@@ -20,7 +20,7 @@ function SignUp(props) {
   const [isSignedUp, setIsSignedUp] = useState(false);
 
   //tracking date
-  const [dateJoined, setDateJoined] = useState('');
+  const [dateJoined, setDateJoined] = useState("");
   const current = new Date();
 
   //for navigation
@@ -31,7 +31,7 @@ function SignUp(props) {
     name: "",
     email: "",
     password: "",
-    dateJoined: ""
+    dateJoined: "",
   });
   //State to store error messages
   const [errors, setErrors] = useState({
@@ -96,14 +96,13 @@ function SignUp(props) {
     const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
     //setting up yhe date
-    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
     setDateJoined(date);
 
     //creating a new user
-    const newUser = { ...values,
-      password: hashPassword,
-      dateJoined: date
-    };
+    const newUser = { ...values, password: hashPassword, dateJoined: date };
 
     //updating the users
     const updatedUsers = [...existingUsers, newUser];
@@ -202,19 +201,32 @@ function SignUp(props) {
             style={{ maxWidth: "300px", height: "300px", marginBottom: "50px" }}
           />
         </div> */}
-        <Carousel className="imf-fluid" style={{maxWidth:"500px", height:"300px", marginBottom:"100px"}}>
+        <Carousel
+          className="imf-fluid"
+          style={{ maxWidth: "500px", height: "300px", marginBottom: "100px" }}
+        >
           <Carousel.Item>
-            <img className="d-block w-100" src={signupBackground1} alt="First Slide" />
+            <img
+              className="d-block w-100"
+              src={signupBackground1}
+              alt="First Slide"
+            />
             <Carousel.Caption>
               {/* <h3>First Slide Label</h3> */}
               <p>We hanlde with Care</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={signupBackground2} alt="Second Slide" />
+            <img
+              className="d-block w-100"
+              src={signupBackground2}
+              alt="Second Slide"
+            />
             <Carousel.Caption>
               {/* <h3>Second Slide Label</h3> */}
-              <p>Just order and wait for a while we’ll be there at your door.</p>
+              <p>
+                Just order and wait for a while we’ll be there at your door.
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

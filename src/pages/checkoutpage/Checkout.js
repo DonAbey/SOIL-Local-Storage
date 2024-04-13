@@ -12,10 +12,10 @@ const Checkout = ({
   currentUserCartItems,
   currentUser,
   handleCheckOutClick,
-  setInitProducts
+  setInitProducts,
 }) => {
   console.log(currentUser);
-  console.log(currentUserCartItems)
+  console.log(currentUserCartItems);
   initTransaction();
   const [input, setInput] = useState({
     name: "",
@@ -138,19 +138,18 @@ const Checkout = ({
       navigate("/thankyou");
       const updateStock = (id) => {
         const products = getData("Products");
-        products.map((each) => 
-        {
-            if (each.id === id) {
-               return each.stock -= 1
-            }  
-        })
-        setInitProducts(products)
-        localStorage.setItem("Products",JSON.stringify(products))
-    } 
-    //update product
-    currentUserCartItems.map((k) => {
-      updateStock(k.cart_product.id)
-    })
+        products.map((each) => {
+          if (each.id === id) {
+            return (each.stock -= 1);
+          }
+        });
+        setInitProducts(products);
+        localStorage.setItem("Products", JSON.stringify(products));
+      };
+      //update product
+      currentUserCartItems.map((k) => {
+        updateStock(k.cart_product.id);
+      });
       console.log(currentUserCartItems);
     } else {
       //add class 'is-invalid' to all inputs

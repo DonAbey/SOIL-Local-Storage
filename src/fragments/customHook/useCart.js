@@ -97,7 +97,13 @@ const useCart = (productSelected, status) => {
     isClickCheckout ? setClickCheckOut(true) : setClickCheckOut(false);
     return clickCheckOut;
   };
-  return [items, setItems, activeUserCart, currentUserCartItems,setCurrentUserCartItems];
+  return [
+    items,
+    setItems,
+    activeUserCart,
+    currentUserCartItems,
+    setCurrentUserCartItems,
+  ];
 };
 
 export default useCart;

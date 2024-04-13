@@ -32,8 +32,8 @@ const Main = () => {
   useEffect(() => {
     if (localStorage.getItem("Products") === null) {
       const init = initProductData();
-      setInitProducts(init)
-      localStorage.setItem("Products",JSON.stringify(init))
+      setInitProducts(init);
+      localStorage.setItem("Products", JSON.stringify(init));
     }
   }, []);
   useLocalStorage("Products", initProducts);
@@ -43,27 +43,37 @@ const Main = () => {
   //check whether the user go directly to the thank you page or they finish a purchase
   const [handleCheckOutClick, clickCheckOut] = useCheckOut();
   //perform cart operations
-  const [items, setItems, activeUserCart, currentUserCartItems,setCurrentUserCartItems] = useCart(
-    productSelected,
-    "add"
-  );
+  const [
+    items,
+    setItems,
+    activeUserCart,
+    currentUserCartItems,
+    setCurrentUserCartItems,
+  ] = useCart(productSelected, "add");
   console.log(initProducts, "TEST");
   return (
     <>
       <Header username={username} logout={logout} />
       {useScrollToTop()}
       <Routes>
-        <Route path="/" element={<Home items={initProducts} handleClick={handleClick} />} />
+        <Route
+          path="/"
+          element={<Home items={initProducts} handleClick={handleClick} />}
+        />
         <Route path="/login" element={<Signin loginUser={loginUser} />} />
         <Route path="/Register" element={<SignUp loginUser={loginUser} />} />
         <Route path="/profile" element={<Myprofile />} />
         <Route
           path="/special"
-          element={<SpecialDeals handleClick={handleClick} items={initProducts}/>}
+          element={
+            <SpecialDeals handleClick={handleClick} items={initProducts} />
+          }
         />
         <Route
           path="/shop-online"
-          element={<ShopOnline handleClick={handleClick} items={initProducts}/>}
+          element={
+            <ShopOnline handleClick={handleClick} items={initProducts} />
+          }
         />
         <Route
           path="/checkout"
