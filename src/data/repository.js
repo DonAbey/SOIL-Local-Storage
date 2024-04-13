@@ -15,8 +15,12 @@ const getUser = () => {
 
 
 const getData = (key) => {
-    let items = localStorage.getItem((key))
-    return JSON.parse(items)
+    let items = localStorage.getItem(key)
+    if (items !== null) {
+        return JSON.parse(items)
+    } else {
+        return null
+    }
 }
 
 function removeUser() {
@@ -24,6 +28,12 @@ function removeUser() {
   }
 
 const setData = (key,data) => {
-    localStorage.setItem(key,data)
+    localStorage.setItem(key,JSON.stringify(data))
 }
-export {getUser,getData,removeUser,setData}
+const initTransaction = () => {
+    if (localStorage.getItem("transaction") !== null) {
+        return
+    }
+    setData("transaction",[])
+}
+export {getUser,getData,removeUser,setData,initTransaction}

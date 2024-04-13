@@ -21,3 +21,9 @@
     margin-bottom: 200px;
 }
 
+.addToCartbtn.disabled {
+    background-color: black;
+}
+.addToCartbtn.disabled:hover {
+    background-color: black;
+}

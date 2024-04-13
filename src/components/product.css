@@ -17,7 +17,7 @@
 .price {
     letter-spacing: 3px;
 }
-.item button {
+.addCart {
     cursor:pointer;
     padding: 5px 10px;
     margin-top:10px;
@@ -29,4 +29,11 @@
 
 .item button:hover {
     background-color: rgb(2, 127, 102);
+}   
+
+.addCart.disabled {
+    background-color: black;
+}
+.addCart.disabled:hover{
+    background-color: black;
 }

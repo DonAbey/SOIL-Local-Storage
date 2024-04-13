@@ -1,8 +1,9 @@
 import { React, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Link, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Home from "../homepage/Home";
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 import Header from "../../fragments/header/Header";
 import Footer from "../../fragments/footer/Footer";
 import Myprofile from "../myprofile/Myprofile";
@@ -18,51 +19,86 @@ import ProductPage from "../product-page/ProductPage";
 import useCart from "../../fragments/customHook/useCart";
 import useCheckLogin from "../../fragments/customHook/useCheckLogin";
 import LoginLogout from "./LoginLogout";
-import HandleClick from "./HandleClick";
 import Checkout from "../checkoutpage/Checkout";
-
+import Thankyou from "../thankyoupage/Thankyou";
+import useHandleClick from "../../fragments/customHook/useHandleClick";
+import useCheckOut from "../../fragments/customHook/useCheckOut";
+import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
+import { getData } from "../../data/repository";
 const Main = () => {
-  const {username,loginUser,logout,getActiveUser} = LoginLogout();
+  const { username, loginUser, logout, getActiveUser } = LoginLogout();
   //if initdata changes -> call use effect to store the products in the local storage again
-  const [initProducts, setInitProducts] = useState(initProductData());
+  const [initProducts, setInitProducts] = useState(getData("Products") || null);
+  useEffect(() => {
+    if (localStorage.getItem("Products") === null) {
+      const init = initProductData();
+      setInitProducts(init)
+      localStorage.setItem("Products",JSON.stringify(init))
+    }
+  }, []);
   useLocalStorage("Products", initProducts);
- 
   const navigate = useNavigate();
-
-  const [productSelected, setProductSelected] = useState(null);
-  //handle click and pass the status add or remove to the custom hook cart
-  const handleClick = (product) => {
-    if (username === null) {
-      alert("You need to log in first")
-      navigate("/login")
-     }
-     else {
-      setProductSelected(product);
-     }
-    } 
-  const [items,setItems,activeUserCart] = useCart(productSelected,"add")
+  //when a user clicks a product
+  const [productSelected, handleClick] = useHandleClick(username);
+  //check whether the user go directly to the thank you page or they finish a purchase
+  const [handleCheckOutClick, clickCheckOut] = useCheckOut();
+  //perform cart operations
+  const [items, setItems, activeUserCart, currentUserCartItems,setCurrentUserCartItems] = useCart(
+    productSelected,
+    "add"
+  );
+  console.log(initProducts, "TEST");
   return (
     <>
-        <Header username={username} logout={logout} />
-
-        <Routes>
-          <Route path="/" element={<Home handleClick={handleClick}/>} />
-          <Route path="/login" element={<Signin loginUser={loginUser} />} />
-          <Route path="/Register" element={<SignUp loginUser={loginUser} />} />
-          <Route path="/profile" element={<Myprofile />} />
-          <Route
-            path="/special"
-            element={<SpecialDeals handleClick={handleClick} />}
-          />
-          <Route
-            path="/shop-online"
-            element={<ShopOnline handleClick={handleClick} />}
-          />
-          <Route path="/checkout" element={<Checkout items={items} currentUser={getActiveUser()}/>} />
-          <Route path="/cart" element={<Cart currentUser={getActiveUser()} updateCartChanged={setItems}/>} />
-          <Route path="/product-page/:urlId" element={<ProductPage handleClick={handleClick} />} />
-        </Routes>
-        <Footer />
+      <Header username={username} logout={logout} />
+      {useScrollToTop()}
+      <Routes>
+        <Route path="/" element={<Home items={initProducts} handleClick={handleClick} />} />
+        <Route path="/login" element={<Signin loginUser={loginUser} />} />
+        <Route path="/Register" element={<SignUp loginUser={loginUser} />} />
+        <Route path="/profile" element={<Myprofile />} />
+        <Route
+          path="/special"
+          element={<SpecialDeals handleClick={handleClick} items={initProducts}/>}
+        />
+        <Route
+          path="/shop-online"
+          element={<ShopOnline handleClick={handleClick} items={initProducts}/>}
+        />
+        <Route
+          path="/checkout"
+          element={
+            <Checkout
+              currentUserCartItems={currentUserCartItems}
+              currentUser={getActiveUser()}
+              handleCheckOutClick={handleCheckOutClick}
+              setInitProducts={setInitProducts}
+            />
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Cart currentUser={getActiveUser()} updateCartChanged={setItems} />
+          }
+        />
+        <Route
+          path="/product-page/:urlId"
+          element={<ProductPage handleClick={handleClick} />}
+        />
+        <Route
+          path="/thankyou"
+          element={
+            <Thankyou
+              currentUser={getActiveUser()}
+              currentUserCartItems={currentUserCartItems}
+              clickCheckOut={clickCheckOut}
+              setItems={setItems}
+            />
+          }
+        />
+      </Routes>
+      <Footer />
     </>
   );
 };

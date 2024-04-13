@@ -7,7 +7,6 @@ import Button from "react-bootstrap/esm/Button";
 import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
 import { getAllProducts } from "../../data/productData";
 const Productpage = ({ handleClick }) => {
-  useScrollToTop();
 
   const { urlId } = useParams();
   const productData = getAllProducts();
@@ -18,12 +17,14 @@ const Productpage = ({ handleClick }) => {
   if (findProduct.length === 0) {
     return "Product not found";
   }
-  const { id, name, price, img } = findProduct[0];
+  const { id, name, price, img,stock } = findProduct[0];
+  console.log(stock)
   const productInfo = {
     name: name,
     price: price,
     img: img,
     id: id,
+    stock:stock
   };
   return (
     <div>
@@ -49,12 +50,20 @@ const Productpage = ({ handleClick }) => {
           <div class="col">
             <p className="fs-1 fw-bolder">{name}</p>
             <p className="fs-3">$ {price}</p>
-            <button
+            
+            {stock > 0 ?    <button
               onClick={()=>handleClick(productInfo)}
-              className="addToCartbtn rounded-pill fw-bold"
+              className="addToCartbtn rounded-pill"
             >
               <i class="fi fi-rr-shopping-cart-add"></i> Add To Cart
-            </button>
+            </button>:   
+            <button
+              
+              className="addToCartbtn rounded-pill disabled"
+            >
+              <i class="fi fi-rr-shopping-cart-add"></i> Out of stock
+            </button>}
+            
           </div>
         </div>
       </div>

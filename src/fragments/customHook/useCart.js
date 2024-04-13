@@ -2,27 +2,44 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useLocalStorage from "./useLocalStorage";
 import { getData } from "../../data/repository";
-
+import { setData } from "../../data/repository";
 const useCart = (productSelected, status) => {
   const currentUser = getData("activeUser");
   //fetching data from localstorage
   const [items, setItems] = useState(getData("all_users_cart_data") || []);
-  const activeUserCart = items.filter(
-    (user) => user.email === currentUser.email
+  const [currentUserCartItems, setCurrentUserCartItems] = useState(
+    getData("transaction") || []
   );
+  //find current user items in cart
+  useEffect(() => {
+    if (currentUserCartItems !== null && currentUser !== null) {
+      const findCurrentUserItem = items.filter((item) => {
+        return item.email === currentUser.email;
+      });
+      setCurrentUserCartItems(findCurrentUserItem);
+      setData("transaction", findCurrentUserItem);
+    }
+  }, [items]);
+
+  const activeUserCart =
+    currentUser !== null
+      ? items.filter((user) => user.email === currentUser.email)
+      : null;
+  //add product function
   const addProductCart = (product) => {
     //check if a user has added the same product
     let newData = verifyAndAddProduct(product);
     if (newData) {
       setItems([...items, newData]);
-     alert("Added successfully");
-      return true
+      alert("Added successfully");
+      return true;
     } else {
       alert("You have already added this product to the cart!");
-      return false
+      return false;
     }
   };
 
+  //remove product function
   const deleteProductCart = (data) => {
     //set the items again but excluded the data passed to this function
     setItems(
@@ -35,6 +52,7 @@ const useCart = (productSelected, status) => {
     );
   };
 
+  //check status add or remove
   useEffect(() => {
     if (status === "add") {
       if (productSelected !== null) {
@@ -72,7 +90,14 @@ const useCart = (productSelected, status) => {
       }
     }
   };
-  return [items, setItems,activeUserCart];
+
+  //check if user click the checkout button or directly go to the thank you page
+  const [clickCheckOut, setClickCheckOut] = useState(false);
+  const handleCheckOutClick = (isClickCheckout) => {
+    isClickCheckout ? setClickCheckOut(true) : setClickCheckOut(false);
+    return clickCheckOut;
+  };
+  return [items, setItems, activeUserCart, currentUserCartItems,setCurrentUserCartItems];
 };
 
 export default useCart;

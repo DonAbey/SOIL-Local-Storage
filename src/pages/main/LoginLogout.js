@@ -10,6 +10,7 @@ const LoginLogout = () => {
     };
     const logout = () => {
       removeUser();
+      localStorage.removeItem("transaction");
       setUsername(null);
     };
     const getActiveUser = () => {

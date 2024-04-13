@@ -3,7 +3,7 @@ import './footer.css'
 const Footer = () => {
   return (
     <>
-    <footer className="row justify-content-center bg-footer mt-auto">
+    <footer className="row justify-content-center bg-footer mt-5">
       <div className="col-md-4">
       <h5>SOIL is a long-term organic food grocer.</h5>
         <div className="col-md-6">

@@ -7,8 +7,11 @@ import useLocalStorage from "../../fragments/customHook/useLocalStorage";
 import SectionHeader from "../../components/SectionHeader";
 import Banner from "../../components/Banner";
 import {useScrollToTop} from "../../fragments/customHook/useScrollToTop";
-const Home = ({ username,handleClick}) => {
-  const [products, setProducts] = useState(getData("Products"));
+const Home = ({items,handleClick}) => {
+  const [products, setProducts] = useState(items);
+  useEffect(()=> {
+    setProducts(items)
+  },[items])
   const showMostPopular = products != null ? products.slice(0, 4) : ""; /*fake first 5 products */
   useScrollToTop();
   return (
@@ -21,7 +24,7 @@ const Home = ({ username,handleClick}) => {
       <CarouselSection />
       <Banner
         text="Organic product specials & small-scale farming"
-        linkto="shop-online"
+        linkto="/special"
       />
       <SectionHeader
         title="Most Popular Products..."
