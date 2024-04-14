@@ -15,7 +15,7 @@ import useLocalStorage from "../../fragments/customHook/useLocalStorage";
 import ShopOnline from "../product-page/ShopOnline";
 import Signin from "../signup-signin/Signin";
 import { SignUp } from "../signup-signin/Signup";
-import ProductPage from "../product-page/ProductPage";
+import ProductPage from "../product-page/Productpage"
 import useCart from "../../fragments/customHook/useCart";
 import useCheckLogin from "../../fragments/customHook/useCheckLogin";
 import LoginLogout from "./LoginLogout";
