@@ -7,7 +7,7 @@ const Banner = ({ img, text="Organic product specials & small-scale farming", li
     <>
     <div className="banner-container rounded-3 mx-5 d-flex align-items-center">
       <div className="banner-image flex-fill">
-        <img className="rounded-3" src="https://picsum.photos/200" alt="" style={{width:'300px',height:'150px'}}/>
+        <img className="rounded-3" src="banner2.png" alt="" style={{width:'300px',height:'250px'}}/>
       </div>
       <div className="banner-content p-3 w-100 d-flex justify-content-around">
         <div className="content">

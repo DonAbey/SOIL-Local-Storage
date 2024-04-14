@@ -48,12 +48,11 @@ const Main = () => {
     setItems,
     activeUserCart,
     currentUserCartItems,
-    setCurrentUserCartItems,
+    setCurrentUserCartItems
   ] = useCart(productSelected, "add");
-  console.log(initProducts, "TEST");
   return (
     <>
-      <Header username={username} logout={logout} />
+      <Header username={username} cart={activeUserCart} logout={logout} />
       {useScrollToTop()}
       <Routes>
         <Route
@@ -94,7 +93,7 @@ const Main = () => {
         />
         <Route
           path="/product-page/:urlId"
-          element={<ProductPage handleClick={handleClick} />}
+          element={<ProductPage handleClick={handleClick} items={initProducts} />}
         />
         <Route
           path="/thankyou"

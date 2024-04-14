@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./Product";
 
-const ProductList = ({ list,handleClick }) => {
+const ProductList = ({ list,handleClick}) => {
   let products = list||[];
   console.log(products)
   return (

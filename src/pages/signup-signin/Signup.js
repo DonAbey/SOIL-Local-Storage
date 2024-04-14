@@ -82,7 +82,7 @@ function SignUp(props) {
       setErrors((errors) => ({
         ...errors,
         passwordError:
-          "Password must be at least 12 characters long and include a mix of uppercase letters, lowercase letters, numbers, and symbols.",
+          "Password must be at least 8 characters long and include a mix of up  percase letters, lowercase letters, numbers, and symbols.",
       }));
     }
 

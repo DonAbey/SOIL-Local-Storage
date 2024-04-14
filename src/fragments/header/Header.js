@@ -49,6 +49,7 @@ const Header = (props) => {
               </Link>
               <Link to="/cart" className={"header-item-style me-4"}>
                 <i className="fi fi-rr-shopping-cart "></i> Cart
+                {props.cart.length > 0 ? <span className="items-cart">{props.cart.length} </span> : null}
               </Link>
               <Link to="/login" onClick={props.logout} className={"header-item-style"}>
                 <i className="fi fi-rs-sign-out-alt"></i> Logout

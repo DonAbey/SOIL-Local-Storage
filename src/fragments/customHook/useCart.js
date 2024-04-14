@@ -31,7 +31,6 @@ const useCart = (productSelected, status) => {
     let newData = verifyAndAddProduct(product);
     if (newData) {
       setItems([...items, newData]);
-      alert("Added successfully");
       return true;
     } else {
       alert("You have already added this product to the cart!");
@@ -51,7 +50,6 @@ const useCart = (productSelected, status) => {
       )
     );
   };
-
   //check status add or remove
   useEffect(() => {
     if (status === "add") {

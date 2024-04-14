@@ -13,7 +13,7 @@ const useHandleClick = (username) => {
       navigate("/login")
      }
      else {
-      setProductSelected(product);
+     setProductSelected(product);
      }
     } 
 
