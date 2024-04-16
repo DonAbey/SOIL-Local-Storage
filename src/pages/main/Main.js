@@ -15,7 +15,7 @@ import useLocalStorage from "../../fragments/customHook/useLocalStorage";
 import ShopOnline from "../product-page/ShopOnline";
 import Signin from "../signup-signin/Signin";
 import { SignUp } from "../signup-signin/Signup";
-import ProductPage from "../product-page/Productpage"
+import ProductPage from "../product-page/ProductPage";
 import useCart from "../../fragments/customHook/useCart";
 import useCheckLogin from "../../fragments/customHook/useCheckLogin";
 import LoginLogout from "./LoginLogout";
@@ -55,10 +55,9 @@ const Main = () => {
     currentUserCartItems,
     setCurrentUserCartItems,
   ] = useCart(productSelected, "add");
-  console.log(initProducts, "TEST");
   return (
     <>
-      <Header username={username} logout={logout} />
+      <Header username={username} cart={activeUserCart} logout={logout} />
       {useScrollToTop()}
       <Routes>
         <Route
@@ -104,7 +103,9 @@ const Main = () => {
         />
         <Route
           path="/product-page/:urlId"
-          element={<ProductPage handleClick={handleClick} />}
+          element={
+            <ProductPage handleClick={handleClick} items={initProducts} />
+          }
         />
         <Route
           path="/thankyou"

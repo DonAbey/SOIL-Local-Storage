@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SignIn from './pages/signup-signin/Signin';
-import Home from './pages/home-test/home';
-import SignUp from './pages/signup-signin/Signup';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import SignIn from "./pages/signup-signin/Signin";
+import Home from "./pages/home-test/home";
+import SignUp from "./pages/signup-signin/Signup";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (

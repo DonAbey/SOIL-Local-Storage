@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import Creditcard from "./Creditcard";
 import { useState, useEffect } from "react";
 import ProductSummary from "./ProductSummary";
 import { initTransaction } from "../../data/repository";
@@ -36,27 +37,56 @@ const Checkout = ({
   let regexName = /^[a-zA-Z ]+$/;
   const isNameValid = regexName.test(input.name) && input.name.length >= 3;
 
+  //validation
   useEffect(() => {
     if (input.name.length > 0 && isNameValid) {
       setCheckName(true);
     } else {
       setCheckName(false);
     }
-  }, [input.name]);
 
-  //creditcard validation
-  const [checkCreditCard, setCheckCreditCard] = useState(false);
-  let regexNumber = /^[0-9]+$/;
-  const isCardValid =
-    regexNumber.test(input.credit) && input.credit.length === 16;
-
-  useEffect(() => {
     if (input.credit.length > 0 && isCardValid) {
       setCheckCreditCard(true);
     } else {
       setCheckCreditCard(false);
     }
-  }, [input.credit]);
+
+    if (input.exp.length > 0 && isExpValid()) {
+      setCheckDate(true);
+    } else {
+      setCheckDate(false);
+    }
+
+    if (input.cvv.length > 0 && isCvvValid) {
+      setCheckCvv(true);
+    } else {
+      setCheckCvv(false);
+    }
+  }, [input]);
+
+  //creditcard validation
+  const [checkCreditCard, setCheckCreditCard] = useState(false);
+  let regexNumber = /^[0-9]+$/;
+   //ref https://javascript.plainenglish.io/how-to-build-a-credit-card-user-interface-with-validation-in-javascript-4f190b6208ad
+   //ex valid 4263982640269299
+    const luhnAlgo = (cardNumber) => {
+    let sum = 0;
+    let isEven = false;
+    for (let i = cardNumber.length - 1; i >= 0; i--) {
+        let digit = parseInt(cardNumber.charAt(i), 10);
+        if (isEven) {
+            digit *= 2;
+            if (digit > 9) {
+                digit -= 9;
+            }
+        }
+        sum += digit;
+        isEven = !isEven;
+    }
+    return sum % 10 === 0;
+  }
+  const isCardValid =
+    regexNumber.test(input.credit) && input.credit.length === 16 && luhnAlgo(input.credit.toString());
   //date validation
   const [checkDate, setCheckDate] = useState(false);
   const isExpValid = () => {
@@ -68,24 +98,11 @@ const Checkout = ({
     }
     return year.toString() + "-" + month <= input.exp;
   };
-  useEffect(() => {
-    if (input.exp.length > 0 && isExpValid()) {
-      setCheckDate(true);
-    } else {
-      setCheckDate(false);
-    }
-  }, [input.exp]);
+
   //cvv validation
   const [checkCvv, setCheckCvv] = useState(false);
   const isCvvValid = regexNumber.test(input.cvv) && input.cvv.length === 3;
 
-  useEffect(() => {
-    if (input.cvv.length > 0 && isCvvValid) {
-      setCheckCvv(true);
-    } else {
-      setCheckCvv(false);
-    }
-  }, [input.cvv]);
   //change class
   const inputClassName = (field) => {
     if (field === "name") {
@@ -190,81 +207,12 @@ const Checkout = ({
               <div className="row">
                 {/* credit card info */}
                 <div className="col">
-                  <div className="row">
-                    <div className="col-12">
-                      <label for="" className="form-label valid">
-                        Name on card
-                      </label>
-                      <input
-                        className={inputClassName("name")}
-                        name="name"
-                        type="text"
-                        placeholder="e.g. BATMAN"
-                        value={input.name}
-                        onChange={handleChange}
-                        autocomplete="cc-csc"
-                        required
-                      />
-                    </div>
-                    <div className="col mt-3">
-                      <label for="" className="form-label">
-                        Credit card number
-                      </label>
-                      <input
-                        className={inputClassName("card")}
-                        name="credit"
-                        type="text"
-                        placeholder="e.g. 1643 3211 2315 9191"
-                        value={input.credit}
-                        onChange={handleChange}
-                        autocomplete="cc-csc"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="row mt-6 ">
-                    <div className="col mt-3">
-                      <label for="" className="form-label">
-                        Expiration Date
-                      </label>
-                      <input
-                        className={inputClassName("exp")}
-                        type="month"
-                        name="exp"
-                        placeholder="MM YY"
-                        value={input.exp}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-md-6 mt-3">
-                      <label for="" className="form-label">
-                        CVV
-                      </label>
-                      <input
-                        maxlength="3"
-                        className={inputClassName("cvv")}
-                        name="cvv"
-                        type="text"
-                        value={input.cvv}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <hr></hr>
-
-                  <div className="row mt-3">
-                    {" "}
-                    <button
-                      className="paynowbtn border bg-dark p-3 rounded-3 "
-                      type="submit"
-                      onClick={onSubmit}
-                    >
-                      {" "}
-                      PAY NOW{" "}
-                    </button>
-                  </div>
+                  <Creditcard
+                    inputClassName={inputClassName}
+                    input={input}
+                    handleChange={handleChange}
+                    onSubmit={onSubmit}
+                  />
                 </div>
                 {/* show products */}
                 <ProductSummary items={currentUserCartItems} />

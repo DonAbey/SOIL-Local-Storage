@@ -10,6 +10,7 @@ const Navbar = () => {
           <NavItem content="Home" linkto="/" />
           <NavItem content="Special Deals" linkto="/special" />
           <NavItem content="Shop Online" linkto="/shop-online" />
+          <NavItem content="Diet Plan" linkto="/dietplanpage" />
         </ul>
       </div>
     </nav>

@@ -33,6 +33,7 @@
 
 .addCart.disabled {
     background-color: black;
+    cursor:not-allowed;
 }
 .addCart.disabled:hover{
     background-color: black;

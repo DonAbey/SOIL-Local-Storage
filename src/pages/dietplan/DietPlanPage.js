@@ -1,69 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import UserDetailsModal from '../../components/UserDetailsModal';
-import {useNavigate, useLocation} from 'react-router-dom';
+import UserDetailsModal from "../../components/UserDetailsModal";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const DietPlanPage = () => {
   const [userDetails, setUserDetails] = useState({
-    age: '',
-    weight: '',
-    height: '',
-    gender: '',
-    activityLevel: '',
-    healthGoal: '',
-    bmrCalories: ''
+    age: "",
+    weight: "",
+    height: "",
+    gender: "",
+    activityLevel: "",
+    healthGoal: "",
+    bmrCalories: "",
   });
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [calories, setCalories] = useState('');
-  const [caloriesError, setCaloriesError] = useState('');
+  const [calories, setCalories] = useState("");
+  const [caloriesError, setCaloriesError] = useState("");
   const navigate = useNavigate();
 
   //calculation is based on Harris-Benedict equation
-  function calculateCalories(age, weight, height, activityLevel, gender, healthGoal) {
+  function calculateCalories(
+    age,
+    weight,
+    height,
+    activityLevel,
+    gender,
+    healthGoal
+  ) {
     let cal;
-      
-        if (gender === 'male') {
-          cal = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
-        } else {
-          // calculation for female
-          cal = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
-        }
-      
-        const activityMultipliers = {
-          lightly: 1.375,
-          moderately: 1.55,
-          very: 1.725,
-          extreme: 1.9,
-        };
-      
-        const multiplier = activityMultipliers[activityLevel];
 
-        let calFinal = Math.round(cal * multiplier);
+    if (gender === "male") {
+      cal = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+    } else {
+      // calculation for female
+      cal = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+    }
 
-        switch(healthGoal){
-            case 'loose weight':
-                calFinal -= 500;
-                break;
-            case 'gain muscle':
-                calFinal += 500;
-                break;    
-            case 'maintain':
-            default:
-            break;
-        }
-        return calFinal;
+    const activityMultipliers = {
+      lightly: 1.375,
+      moderately: 1.55,
+      very: 1.725,
+      extreme: 1.9,
+    };
+
+    const multiplier = activityMultipliers[activityLevel];
+
+    let calFinal = Math.round(cal * multiplier);
+
+    switch (healthGoal) {
+      case "loose weight":
+        calFinal -= 500;
+        break;
+      case "gain muscle":
+        calFinal += 500;
+        break;
+      case "maintain":
+      default:
+        break;
+    }
+    return calFinal;
   }
 
   const handleGetDailyMealPlan = async () =>{
     //required calories for navigation
-    if(!calories || calories <= 0){
+    if (!calories || calories <= 0) {
       setCaloriesError("Please enter a valid amount");
       return;
     }
     // navigate('/mealplan', {state: {calories: calories}});
     // alert(calories);
     try {
-      const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=6a6056f6a75545e08e94e56bcb5754b9&timeFrame=day&targetCalories=${calories}`);
+      const response = await fetch(
+        `https://api.spoonacular.com/mealplanner/generate?apiKey=6a6056f6a75545e08e94e56bcb5754b9&timeFrame=day&targetCalories=${calories}`
+      );
       const data = await response.json();
       //console.log(data);
       navigate('/dailymealplan', { state: { mealData: data } }); // Passing data via state
@@ -89,23 +98,23 @@ const DietPlanPage = () => {
   };
 
   const handleDetailsSubmit = (details) => {
-
     const calculatedCalories = calculateCalories(
-        details.age, 
-        details.weight, 
-        details.height, 
-        details.activityLevel, 
-        details.gender,
-        details.healthGoal
-      );
+      details.age,
+      details.weight,
+      details.height,
+      details.activityLevel,
+      details.gender,
+      details.healthGoal
+    );
 
-    setCalories(calculatedCalories);  
+    setCalories(calculatedCalories);
 
     setUserDetails({
-        ...details, bmrCalories: calculatedCalories
+      ...details,
+      bmrCalories: calculatedCalories,
     });
     setModalIsOpen(false); // Closes the modal after submission
-};
+  };
 
   return (
 <div className="container mt-5">

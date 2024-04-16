@@ -1,13 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import "./nav.css";
 
-const NavItem = ({content,linkto}) => {
+const NavItem = ({ content, linkto }) => {
   return (
-   <>
-     <li className="nav-item me-5"><Link className={"menu-style"} to={linkto}>{content}</Link></li>
-   </>
-  )
-}
+    <>
+      <li className="nav-item me-5">
+        <Link className={"menu-style"} to={linkto}>
+          {content}
+        </Link>
+      </li>
+    </>
+  );
+};
 
-export default NavItem
+export default NavItem;

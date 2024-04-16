@@ -3,7 +3,7 @@ import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
 import { getAllProducts } from "../../data/productData";
 import ProductList from "../../components/ProductList";
 import { Link } from "react-router-dom";
-const ShopOnline = ({ handleClick, items }) => {
+const ShopOnline = ({ handleClick, items, addSuccess }) => {
   return (
     <div>
       <nav aria-label="breadcrumb" className="ms-5 mt-5">
@@ -17,7 +17,11 @@ const ShopOnline = ({ handleClick, items }) => {
       <div className="text-center mt-5">
         <h2>Shop Online</h2>
         <div className="my-5"></div>
-        <ProductList list={items} handleClick={handleClick} />
+        <ProductList
+          list={items}
+          handleClick={handleClick}
+          addSuccess={addSuccess}
+        />
       </div>
     </div>
   );
