@@ -13,7 +13,7 @@ function ViewLastWeeklyMealPlan() {
                 setWeeklyMealPlan(parsedPlan);
                 console.log("Retrieved weekly meal plan:", parsedPlan);
             } else {
-                console.log("No weekly meal plan found under key:", storedPlanKey);
+                console.log("No weekly meal plan found under the key:", storedPlanKey);
             }
         } else {
             console.log("No active user found.");
