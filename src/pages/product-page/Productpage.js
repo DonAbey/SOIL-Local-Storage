@@ -6,14 +6,14 @@ import { getData } from "../../data/repository";
 import Button from "react-bootstrap/esm/Button";
 import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
 import { getAllProducts } from "../../data/productData";
-import { useState,useEffect } from "react";
-const Productpage = ({ handleClick,items }) => {
+import { useState, useEffect } from "react";
+const Productpage = ({ handleClick, items }) => {
   const { urlId } = useParams();
-  
-  const [isDisabled,setIsDisabled] = useState(false)
+
+  const [isDisabled, setIsDisabled] = useState(false);
   const addProduct = (productInfo) => {
     handleClick(productInfo);
-    setIsDisabled(true)
+    setIsDisabled(true);
   };
   //check from localstorage then disabled the button
   const [getLocal, setGetLocal] = useState(getData("transaction") || []);
@@ -26,7 +26,7 @@ const Productpage = ({ handleClick,items }) => {
   }, [getLocal]);
 
   if (items === null) {
-    return
+    return;
   }
   const findProduct = items.filter(
     (product) => product.id === parseInt(urlId, 10)
@@ -43,8 +43,6 @@ const Productpage = ({ handleClick,items }) => {
     id: id,
     stock: stock,
   };
-
-
 
   return (
     <div>
@@ -65,7 +63,7 @@ const Productpage = ({ handleClick,items }) => {
       <div class="container my-5 font-monospace">
         <div class="row row-cols-2">
           <div class="col">
-            <img src={"/" + image} alt="" width="75%"/>
+            <img src={"/" + image} alt="" width="75%" />
           </div>
           <div class="col">
             <p className="fs-1 fw-bolder">{name}</p>
@@ -74,9 +72,14 @@ const Productpage = ({ handleClick,items }) => {
             {stock > 0 ? (
               <button
                 onClick={() => addProduct(productInfo)}
-                className={isDisabled || addedToCart ? "addToCartbtn rounded-pill disabled" : "addToCartbtn rounded-pill" }
+                className={
+                  isDisabled || addedToCart
+                    ? "addToCartbtn rounded-pill disabled"
+                    : "addToCartbtn rounded-pill"
+                }
               >
-                <i class="fi fi-rr-shopping-cart-add"></i> {isDisabled || addedToCart  ?" Added To Cart" : "Add To Cart"}
+                <i class="fi fi-rr-shopping-cart-add"></i>{" "}
+                {isDisabled || addedToCart ? " Added To Cart" : "Add To Cart"}
               </button>
             ) : (
               <button className="addToCartbtn rounded-pill disabled">

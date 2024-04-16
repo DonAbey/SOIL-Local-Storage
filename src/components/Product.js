@@ -14,10 +14,10 @@ const Product = (props) => {
   };
 
   //disalbed the button
-  const [isDisabled,setIsDisabled] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false);
   const addProduct = () => {
     props.handleClick(productInfo, "add");
-    setIsDisabled(true)
+    setIsDisabled(true);
   };
   //check from localstorage then disabled the button
   const [getLocal, setGetLocal] = useState(getData("transaction") || []);
@@ -36,9 +36,14 @@ const Product = (props) => {
         <div className="price">$ {props.price}</div>
       </Link>
       {props.stock > 0 ? (
-        <button type="button" onClick={() => addProduct()} className={isDisabled || addedToCart ? "addCart disabled" : "addCart"}           disabled={addedToCart}
+        <button
+          type="button"
+          onClick={() => addProduct()}
+          className={isDisabled || addedToCart ? "addCart disabled" : "addCart"}
+          disabled={addedToCart}
         >
-          <i class="fi fi-rr-shopping-cart-add"></i>{addedToCart || isDisabled ? "Added to Cart" : "Add to Cart"} 
+          <i class="fi fi-rr-shopping-cart-add"></i>
+          {addedToCart || isDisabled ? "Added to Cart" : "Add to Cart"}
         </button>
       ) : (
         <button type="button" className="addCart disabled" disabled>

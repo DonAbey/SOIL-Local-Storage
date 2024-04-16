@@ -5,26 +5,26 @@ const Content = ({ handleClick, items, productIds, head, content }) => {
   //find items from the product ids parameter
   const renderProducts = () => {
     if (items !== null) {
-    let findItems = productIds.map((id) => {
-      return items.filter((item) => item.id === id)[0];
-    });
-    let render = findItems.map((item) => {
-      return (
-        <>
-          <Product
-            handleClick={handleClick}
-            productId={item.id}
-            name={item.name}
-            image={item.image}
-            price={item.price}
-            stock={item.stock}
-          />
-          <div className="p-4"></div>
-        </>
-      );
-    });
-    return render;
-        }
+      let findItems = productIds.map((id) => {
+        return items.filter((item) => item.id === id)[0];
+      });
+      let render = findItems.map((item) => {
+        return (
+          <>
+            <Product
+              handleClick={handleClick}
+              productId={item.id}
+              name={item.name}
+              image={item.image}
+              price={item.price}
+              stock={item.stock}
+            />
+            <div className="p-4"></div>
+          </>
+        );
+      });
+      return render;
+    }
   };
 
   return (
