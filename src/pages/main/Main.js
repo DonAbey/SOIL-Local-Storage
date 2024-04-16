@@ -15,7 +15,7 @@ import useLocalStorage from "../../fragments/customHook/useLocalStorage";
 import ShopOnline from "../product-page/ShopOnline";
 import Signin from "../signup-signin/Signin";
 import { SignUp } from "../signup-signin/Signup";
-import ProductPage from "../product-page/ProductPage";
+import ProductPage from "../product-page/Productpage"
 import useCart from "../../fragments/customHook/useCart";
 import useCheckLogin from "../../fragments/customHook/useCheckLogin";
 import LoginLogout from "./LoginLogout";
@@ -25,6 +25,9 @@ import useHandleClick from "../../fragments/customHook/useHandleClick";
 import useCheckOut from "../../fragments/customHook/useCheckOut";
 import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
 import { getData } from "../../data/repository";
+import DietPlanPage from "../dietplan/DietPlanPage";
+import DailyMealPlan from "../diet-daily/DailyMealPlan";
+import ViewLastDailyMealPlan from "../diet-daily/ViewLastDailyMealPlan";
 const Main = () => {
   const { username, loginUser, logout, getActiveUser } = LoginLogout();
   //if initdata changes -> call use effect to store the products in the local storage again
@@ -62,6 +65,9 @@ const Main = () => {
         <Route path="/login" element={<Signin loginUser={loginUser} />} />
         <Route path="/Register" element={<SignUp loginUser={loginUser} />} />
         <Route path="/profile" element={<Myprofile />} />
+        <Route path="/dietplanpage" element={<DietPlanPage />} />
+        <Route path="/dailymealplan" element={<DailyMealPlan />} />
+        <Route path="/viewLastDailyMealPlan" element={<ViewLastDailyMealPlan />} />
         <Route
           path="/special"
           element={
