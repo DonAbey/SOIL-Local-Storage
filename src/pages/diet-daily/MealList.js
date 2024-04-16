@@ -3,7 +3,7 @@ import Meal from "./Meal";
 
 function MealList({mealData}) {
     const nutrients = mealData.nutrients;
-    console.log(mealData);
+    //console.log(mealData);
 
     return(
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '0vh' }}>

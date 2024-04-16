@@ -1,13 +1,11 @@
-//daily
+//weekly
 //import React from 'react';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MealList from './MealList';
 
-function DailyMealPlan() {
+function WeeklyMealPlan() {
     const location = useLocation();
-    // const [calories] = useState(location.state?.calories);
-    // const [mealData, setMealData] = useState(null);
     const mealData = location.state?.mealData; //new
 
     // useEffect(() => {
@@ -26,24 +24,25 @@ function DailyMealPlan() {
     useEffect(() => {
         const activeUser = JSON.parse(localStorage.getItem('activeUser'));
         if(activeUser && activeUser.email && mealData){
-            localStorage.setItem(`${activeUser.email}_mealPlanDaily`, JSON.stringify(mealData))
+            localStorage.setItem(`${activeUser.email}_mealPlanWeekly`, JSON.stringify(mealData))
         }
     },[mealData]);
 
     return (
-        <div className="Meal-plan" style={{ 
-            display: 'flex', 
-            flexDirection: 'row', 
-            flexWrap: 'wrap', 
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh', 
-            padding: '20px'
-        }}>
-            {/*Loading Meal Data from MealList */}
-            {mealData ? <MealList mealData={mealData} /> : <p>Loading meal plan...</p>}
+        <div className="container mt-5">
+            <h1>Weekly Meal Overview</h1>
+            {mealData ? (
+                Object.entries(mealData).map(([day, data]) => (
+                    <div key={day}>
+                        <h2>{day.charAt(0).toUpperCase() + day.slice(1)}</h2>
+                        <MealList dayData={data} />
+                    </div>
+                ))
+            ) : (
+                <p>No meal plan data available.</p>
+            )}
         </div>
     );
 }
 
-export default DailyMealPlan;
+export default WeeklyMealPlan;

@@ -54,7 +54,7 @@ const DietPlanPage = () => {
         return calFinal;
   }
 
-  const handleGetMealPlan = async () =>{
+  const handleGetDailyMealPlan = async () =>{
     //required calories for navigation
     if(!calories || calories <= 0){
       setCaloriesError("Please enter a valid amount");
@@ -65,7 +65,24 @@ const DietPlanPage = () => {
     try {
       const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=6a6056f6a75545e08e94e56bcb5754b9&timeFrame=day&targetCalories=${calories}`);
       const data = await response.json();
+      //console.log(data);
       navigate('/dailymealplan', { state: { mealData: data } }); // Passing data via state
+    } catch (error) {
+      console.error('Error fetching meal data:', error);
+    }
+  };
+
+  const handleGetWeeklyMealPlan = async () =>{
+        //required calories for navigation
+    if(!calories || calories <= 0){
+      setCaloriesError("Please enter a valid amount");
+      return;
+    }
+    try {
+      const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=6a6056f6a75545e08e94e56bcb5754b9&timeFrame=week&targetCalories=${calories}`);
+      const data = await response.json();
+      //console.log(data.week);
+      navigate('/weeklymealplan',{state: {mealData: data.week}})
     } catch (error) {
       console.error('Error fetching meal data:', error);
     }
@@ -91,7 +108,7 @@ const DietPlanPage = () => {
 };
 
   return (
-    <div className="container mt-5">
+<div className="container mt-5">
   <div className="row">
     <div className="col-md-8 mx-auto">
       <div className="card text-dark bg-light mb-3">
@@ -103,17 +120,16 @@ const DietPlanPage = () => {
             type="number"
             placeholder="Enter Daily Calories"
             value={calories}
-            onChange={(e) => {setCalories(e.target.value);
-              setCaloriesError('');
-            }}
+            onChange={(e) => {setCalories(e.target.value); setCaloriesError('');}}
             required
           />
           {caloriesError && <div className="text-danger">{caloriesError}</div>}
-          {/* Flex container for buttons */}
-          <div className="d-flex justify-content-between">
-            <button className="btn btn-dark" onClick={() => setModalIsOpen(true)}>Not Sure Amount Of Calories?</button>
-            <button className="btn btn-primary" onClick={handleGetMealPlan}>Get Daily Meal Plan</button>
-            <button className="btn btn-secondary" onClick={() => navigate('/viewLastDailyMealPlan')}>View Last Meal Plan</button>
+          <div className="button-container d-flex justify-content-between align-items-center my-3">
+            <button className="btn btn-dark me-2" onClick={() => setModalIsOpen(true)}>Not Sure Amount Of Calories?</button>
+            <button className="btn btn-primary me-2" onClick={handleGetDailyMealPlan}>Get Daily Meal Plan</button>
+            <button className="btn btn-secondary me-2" onClick={() => navigate('/viewLastDailyMealPlan')}>View Last Daily Meal Plan</button>
+            <button className="btn btn-primary me-2" onClick={handleGetWeeklyMealPlan}>Get Weekly Meal Plan</button>
+            <button className="btn btn-secondary" onClick={() => navigate('/viewLastWeeklyMealPlan')}>View Last Weekly Meal Plan</button>
           </div>
           <UserDetailsModal
             isOpen={modalIsOpen}

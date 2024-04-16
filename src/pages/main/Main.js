@@ -28,6 +28,8 @@ import { getData } from "../../data/repository";
 import DietPlanPage from "../dietplan/DietPlanPage";
 import DailyMealPlan from "../diet-daily/DailyMealPlan";
 import ViewLastDailyMealPlan from "../diet-daily/ViewLastDailyMealPlan";
+import WeeklyMealPlan from "../diet-weekly/WeeklyMealPlan"
+import ViewLastWeeklyMealPlan from "../diet-weekly/ViewLastWeeklyPlan";
 const Main = () => {
   const { username, loginUser, logout, getActiveUser } = LoginLogout();
   //if initdata changes -> call use effect to store the products in the local storage again
@@ -69,6 +71,8 @@ const Main = () => {
         <Route path="/dietplanpage" element={<DietPlanPage />} />
         <Route path="/dailymealplan" element={<DailyMealPlan />} />
         <Route path="/viewLastDailyMealPlan" element={<ViewLastDailyMealPlan />} />
+        <Route path="/viewLastWeeklyMealPlan" element={<ViewLastWeeklyMealPlan />} />
+        <Route path="/weeklymealplan" element={<WeeklyMealPlan />} />
         <Route
           path="/special"
           element={

@@ -6,7 +6,7 @@ function ViewLastMealPlan() {
     useEffect(() => {
         const activeUser = JSON.parse(localStorage.getItem('activeUser'));
         if (activeUser && activeUser.email) {
-            const savedMealPlan = JSON.parse(localStorage.getItem(`${activeUser.email}_mealPlan`));
+            const savedMealPlan = JSON.parse(localStorage.getItem(`${activeUser.email}_mealPlanDaily`));
             setLastMealPlan(savedMealPlan);
         }
     }, []);
