@@ -162,14 +162,6 @@ function MyProfile(props) {
             >
               Delete Account
             </button>
-            <button
-              type="button"
-              className="btn btn-success ms-3"
-              style={{ backgroundColor: "#009f7f" }}
-              onClick={() => navigate("/dietplanpage")}
-            >
-              Diet
-            </button>
           </div>
         </div>
       </form>
