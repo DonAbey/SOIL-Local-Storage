@@ -19,6 +19,7 @@ const DietPlanPage = () => {
   const navigate = useNavigate();
 
   //calculation is based on Harris-Benedict equation
+  //https://nutrium.com/blog/harris-benedict-equation-calculator-for-nutrition-professionals/
   function calculateCalories(
     age,
     weight,
@@ -30,10 +31,10 @@ const DietPlanPage = () => {
     let cal;
 
     if (gender === "male") {
-      cal = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+      cal = 66.5 + 13.75 * weight + 5 * height - 6.75 * age;
     } else {
       // calculation for female
-      cal = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+      cal = 655.1 + 9.563 * weight + 1.85 * height - 4.676 * age;
     }
 
     const activityMultipliers = {
