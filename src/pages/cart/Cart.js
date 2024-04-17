@@ -15,9 +15,10 @@ const Cart = ({ currentUser, updateCartChanged }) => {
   };
   const [items, setItems, activeUserCart] = useCart(productSelected, "delete");
 
-  updateCartChanged(items);
+  useEffect(() => {
+    updateCartChanged(items);
+  });
 
-  console.log(items);
   return (
     <div>
       <nav aria-label="breadcrumb" className="ms-5 mt-5">

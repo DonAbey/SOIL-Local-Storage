@@ -3,13 +3,12 @@ import Product from "./Product";
 
 const ProductList = ({ list, handleClick }) => {
   let products = list || [];
-  console.log(products);
   return (
     <div className="container">
       <div class="row">
-        {products.map((item) => {
+        {products.map((item) => { 
           return (
-            <div className="col">
+            <div className="col" key={item.id}>
               <Product
                 handleClick={handleClick}
                 name={item.name}

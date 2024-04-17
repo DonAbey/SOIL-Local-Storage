@@ -66,9 +66,6 @@ const useCart = (productSelected, status) => {
   useEffect(() => {
     localStorage.setItem("all_users_cart_data", JSON.stringify(items));
   }, [items]);
-
-  console.log("addeddd", items);
-  console.log("deleted", items);
   //check if the user already added this product?
   const verifyAndAddProduct = (product) => {
     if (product !== null) {
