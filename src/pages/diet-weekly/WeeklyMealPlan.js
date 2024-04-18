@@ -8,19 +8,6 @@ function WeeklyMealPlan() {
     const location = useLocation();
     const mealData = location.state?.mealData; //new
 
-    // useEffect(() => {
-    //     const getMealData = async () => {
-    //         try {
-    //             const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=8a12156a2efc4af5ab5d13250fc22c9a&timeFrame=day&targetCalories=${calories}`);
-    //             const data = await response.json();
-    //             setMealData(data);
-    //         } catch (error) {
-    //             console.error('Error fetching meal data:', error);
-    //         }
-    //     };
-    //     getMealData();
-    // }, [calories]); // dependencies as calories, whenever calorie amount change useEffect comes to action
-
     useEffect(() => {
         const activeUser = JSON.parse(localStorage.getItem('activeUser'));
         if(activeUser && activeUser.email && mealData){

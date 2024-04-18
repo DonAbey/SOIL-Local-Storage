@@ -25,6 +25,7 @@ function SignIn(props) {
     });
   };
 
+  //academic reference of Week 2 and Week 3
   const handleClick = (event) => {
     event.preventDefault();
 
