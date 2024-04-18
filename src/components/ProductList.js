@@ -5,7 +5,7 @@ const ProductList = ({ list, handleClick }) => {
   let products = list || [];
   return (
     <div className="container">
-      <div class="row">
+      <div className="row">
         {products.map((item) => { 
           return (
             <div className="col" key={item.id}>

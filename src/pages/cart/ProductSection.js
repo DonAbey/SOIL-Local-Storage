@@ -13,7 +13,7 @@ const ProductSection = ({ activeUserCart, handleRemove }) => {
         <div className="container mt-3 mb-5 p-5">
           <div className="row">
             <div className="col-8">
-              <table class="table align-middle mb-0 bg-white">
+              <table className="table align-middle mb-0 bg-white">
                 <thead className="bg-dark">
                   <tr>
                     <th scope="col">Product</th>
@@ -33,7 +33,7 @@ const ProductSection = ({ activeUserCart, handleRemove }) => {
                         </td>
                         <td>
                           <span
-                            class="remove"
+                            className="remove"
                             onClick={() =>
                               handleRemove(
                                 {

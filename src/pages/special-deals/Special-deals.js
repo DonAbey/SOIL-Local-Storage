@@ -34,8 +34,8 @@ const SpecialDeals = ({ handleClick, items }) => {
       <div className="text-center mt-5">
         <h2>Organic product specials & small-scale farming</h2>
       </div>
-      <div class="container">
-        <div class="row mx-5 mt-5">
+      <div className="container">
+        <div className="row mx-5 mt-5" >
           <Content
             handleClick={handleClick}
             items={farmProducts}
@@ -48,15 +48,15 @@ const SpecialDeals = ({ handleClick, items }) => {
               tricks for cultivating a bountiful harvest of compact vegetables
               in your own backyard oasis.`}
           />
-          <div class="col">
+          <div className="col">
             {" "}
             <img
               src="special-1.png"
               style={{ width: "100%", height: "600px" }}
             ></img>
           </div>
-          <div class="w-100 my-4"></div>
-          <div class="col">
+          <div className="w-100 my-4"></div>
+          <div className="col">
             {" "}
             <img
               src="special-deal2.png"
@@ -77,8 +77,8 @@ const SpecialDeals = ({ handleClick, items }) => {
               for salads, snacks, and cooking.`}
           />
         </div>
-        <div class="w-100"></div>
-        <div class="col"> </div>
+        <div className="w-100"></div>
+        <div className="col"> </div>
       </div>
       <h2 className="text-center my-5">All Special Deal Items</h2>
       <ProductList list={farmProducts} handleClick={handleClick} />

@@ -195,7 +195,7 @@ const Checkout = ({
         </ol>
       </nav>
       {currentUser === null ? (
-        <div class="mx-5 m-5 text-center">
+        <div className="mx-5 m-5 text-center">
           <h1>Checkout</h1>
           You are not logged in.
         </div>

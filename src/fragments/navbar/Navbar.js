@@ -4,8 +4,8 @@ import "./nav.css";
 import NavItem from "./NavItem";
 const Navbar = () => {
   return (
-    <nav class="navbar navbar-light bg-light menu-nav">
-      <div class="container-fluid justify-content-start ms-5 me-5 mt-0">
+    <nav className="navbar navbar-light bg-light menu-nav">
+      <div className="container-fluid justify-content-start ms-5 me-5 mt-0">
         <ul className="navbar nav">
           <NavItem content="Home" linkto="/" />
           <NavItem content="Special Deals" linkto="/special" />

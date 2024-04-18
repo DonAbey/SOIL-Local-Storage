@@ -42,12 +42,12 @@ const Product = (props) => {
           className={isDisabled || addedToCart ? "addCart disabled" : "addCart"}
           disabled={addedToCart}
         >
-          <i class="fi fi-rr-shopping-cart-add"></i>
+          <i className="fi fi-rr-shopping-cart-add"></i>
           {addedToCart || isDisabled ? "Added to Cart" : "Add to Cart"}
         </button>
       ) : (
         <button type="button" className="addCart disabled" disabled>
-          <i class="fi fi-rr-shopping-cart-add"></i> Out of stock
+          <i className="fi fi-rr-shopping-cart-add"></i> Out of stock
         </button>
       )}
     </div>

@@ -3,7 +3,7 @@ import React from "react";
 const ProductSummary = ({ items }) => {
   return (
     <div className="col">
-      <table class="table align-middle mb-0 bg-white">
+      <table className="table align-middle mb-0 bg-white">
         <thead className="bg-dark">
           <tr>
             <th scope="col">Product</th>

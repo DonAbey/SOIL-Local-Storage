@@ -40,7 +40,7 @@ const Thankyou = ({
           <h2>Thank you for your purchase</h2>
           <h4>Your order was completed successfully</h4>
           <div className="col-8">
-            <table class="table align-middle mb-0 bg-white">
+            <table className="table align-middle mb-0 bg-white">
               <thead className="bg-dark">
                 <tr>
                   <th scope="col">Product</th>

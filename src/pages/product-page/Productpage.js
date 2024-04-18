@@ -60,12 +60,12 @@ const Productpage = ({ handleClick, items }) => {
         </ol>
       </nav>
 
-      <div class="container my-5 font-monospace">
-        <div class="row row-cols-2">
-          <div class="col">
+      <div className="container my-5 font-monospace">
+        <div className="row row-cols-2">
+          <div className="col">
             <img src={"/" + image} alt="" width="75%" />
           </div>
-          <div class="col">
+          <div className="col">
             <p className="fs-1 fw-bolder">{name}</p>
             <p className="fs-3">$ {price}</p>
 
@@ -78,12 +78,12 @@ const Productpage = ({ handleClick, items }) => {
                     : "addToCartbtn rounded-pill"
                 }
               >
-                <i class="fi fi-rr-shopping-cart-add"></i>{" "}
+                <i className="fi fi-rr-shopping-cart-add"></i>{" "}
                 {isDisabled || addedToCart ? " Added To Cart" : "Add To Cart"}
               </button>
             ) : (
               <button className="addToCartbtn rounded-pill disabled">
-                <i class="fi fi-rr-shopping-cart-add"></i> Out of stock
+                <i className="fi fi-rr-shopping-cart-add"></i> Out of stock
               </button>
             )}
           </div>
