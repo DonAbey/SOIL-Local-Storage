@@ -2,6 +2,9 @@ import React from "react";
 import Modal from "react-modal";
 import UserDetailsForm from "./UserDetailsForm";
 
+//creating a modal window
+//W3Schools, “How To Make a Modal Box With CSS and JavaScript,” W3schools.com, 2019. https://www.w3schools.com/howto/howto_css_modals.asp
+
 Modal.setAppElement("#root");
 
 const customStyles = {
