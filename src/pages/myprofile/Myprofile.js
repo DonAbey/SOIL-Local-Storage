@@ -22,7 +22,7 @@ function MyProfile(props) {
     if (activeUser) {
       setUser(activeUser);
     } else {
-      // Redirect or handle the absence of an active user
+      //handling the absence of an active user
       navigate("/");
     }
   }, [navigate]);

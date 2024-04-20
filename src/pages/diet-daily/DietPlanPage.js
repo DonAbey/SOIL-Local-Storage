@@ -30,6 +30,7 @@ const DietPlanPage = () => {
   ) {
     let cal;
 
+    //calculation for male
     if (gender === "male") {
       cal = 66.5 + 13.75 * weight + 5 * height - 6.75 * age;
     } else {
@@ -62,6 +63,8 @@ const DietPlanPage = () => {
     return calFinal;
   }
 
+  //generating meal plan using spoonacular api
+  //“spoonacular recipe and food API,” spoonacular.com. https://spoonacular.com/food-api/docs#Generate-Meal-Plan (accessed Apr. 12, 2024).
   const handleGetMealPlan = async () => {
     //required calories for navigation
     if (!calories || calories <= 0) {

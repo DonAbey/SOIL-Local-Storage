@@ -89,6 +89,7 @@ function SignUp(props) {
     if (!isValid) return;
 
     //using bcrypt hash encode
+    //Bcrypt (no date) npm. Available at: https://www.npmjs.com/package/bcrypt (Accessed: 05 April 2024). 
     const hashPassword = bcrypt.hashSync(values.password, 10);
 
     //checking for existing users
@@ -193,14 +194,7 @@ function SignUp(props) {
             </button>
           </form>
         </div>
-        {/* <div className="col-md-7 d-flex align-items-center justify-content-center">
-          <img
-            src={signupBackground1}
-            alt="Sign Up"
-            className="img-fluid"
-            style={{ maxWidth: "300px", height: "300px", marginBottom: "50px" }}
-          />
-        </div> */}
+        {/* M. O. contributors Jacob Thornton, and Bootstrap, “Carousel,” getbootstrap.com. https://getbootstrap.com/docs/4.0/components/carousel/ */}
         <Carousel
           className="imf-fluid"
           style={{ maxWidth: "500px", height: "300px", marginBottom: "100px" }}
