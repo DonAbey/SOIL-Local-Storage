@@ -13,7 +13,7 @@ const Home = ({ items, handleClick }) => {
     setProducts(items);
   }, [items]);
   const showMostPopular =
-    products != null ? products.slice(0, 4) : ""; /*fake first 5 products */
+    products != null ? products.slice(0, 4) : ""; /*show the first 5 products from the list as the most popular products */
   useScrollToTop();
   return (
     <div>
