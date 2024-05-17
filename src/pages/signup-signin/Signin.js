@@ -1,31 +1,21 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { verifySignIn } from "../../data/verify";
 import { useNavigate } from "react-router-dom";
 import { useScrollToTop } from "../../fragments/customHook/useScrollToTop";
+import { useForm } from "../../fragments/customHook/useForm";
 import "./style.css";
+
 function SignIn(props) {
   useScrollToTop();
 
-  //state for signIn
+  const navigate = useNavigate();
   const [isSignedIn, setIsSignedIn] = useState(null);
 
-  //State to store values email and password
-  const [values, setValues] = useState({
-    name: "",
+  const { values, handleChange, resetForm } = useForm({
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setValues({
-      ...values,
-      [name]: value,
-    });
-  };
-
-  //academic reference of Week 2 and Week 3
   const handleClick = (event) => {
     event.preventDefault();
 
@@ -37,7 +27,7 @@ function SignIn(props) {
       setTimeout(() => {
         props.loginUser(verifiedUser.name);
         navigate("/");
-      });
+      }, 1000);
     } else {
       setIsSignedIn(false);
     }
@@ -73,7 +63,7 @@ function SignIn(props) {
             </div>
             <div className="text-center">
               <button className="btn mb-3 btn-login" onClick={handleClick}>
-                SignIn
+                Sign In
               </button>
             </div>
             {isSignedIn && (
@@ -92,4 +82,5 @@ function SignIn(props) {
     </div>
   );
 }
+
 export default SignIn;
