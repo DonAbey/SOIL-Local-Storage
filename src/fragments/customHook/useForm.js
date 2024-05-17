@@ -11,14 +11,18 @@ export const useForm = (initialValues, validate) => {
       ...values,
       [name]: value,
     });
+  };
 
-    if (validate) {
-      const error = validate(name, value);
-      setErrors({
-        ...errors,
-        [name]: error,
-      });
-    }
+  const validateForm = () => {
+    const validationErrors = {};
+    Object.keys(values).forEach((name) => {
+      const error = validate(name, values[name], values);
+      if (error) {
+        validationErrors[name] = error;
+      }
+    });
+    setErrors(validationErrors);
+    return Object.keys(validationErrors).length === 0;
   };
 
   const resetForm = () => {
@@ -30,7 +34,8 @@ export const useForm = (initialValues, validate) => {
     values,
     errors,
     handleChange,
-    setErrors, // Include setErrors here
+    setErrors,
+    validateForm,
     resetForm,
   };
 };

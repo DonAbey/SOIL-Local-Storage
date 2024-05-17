@@ -19,14 +19,15 @@ function SignUp(props) {
   const [isSignedUp, setIsSignedUp] = useState(false);
 
   const current = new Date();
-  const { values, errors, handleChange, setErrors, resetForm } = useForm(
+  const { values, errors, handleChange, validateForm, resetForm } = useForm(
     {
       name: "",
       email: "",
       password: "",
+      confirmPassword: "",
       dateJoined: "",
     },
-    (name, value) => {
+    (name, value, values) => {
       let error = "";
       if (name === "email") {
         if (!validateEmail(value)) {
@@ -34,9 +35,14 @@ function SignUp(props) {
         } else if (!validateEmailStorage(value)) {
           error = "Email is already registered.";
         }
-      } else if (name === "password" && !validatePassword(value)) {
-        error =
-          "Password must be at least 8 characters long and include a mix of uppercase letters, lowercase letters, numbers, and symbols.";
+      } else if (name === "password") {
+        if (!validatePassword(value)) {
+          error = "Password must be at least 8 characters long and include a mix of uppercase letters, lowercase letters, numbers, and symbols.";
+        }
+      } else if (name === "confirmPassword") {
+        if (value !== values.password) {
+          error = "Passwords do not match.";
+        }
       }
       return error;
     }
@@ -45,15 +51,9 @@ function SignUp(props) {
   const handleClick = (event) => {
     event.preventDefault();
 
-    let isValid = true;
-    setErrors({ emailError: "", passwordError: "" });
-
-    if (!values.name.trim() || !values.email.trim() || !values.password) {
-      isValid = false;
-      alert("All fields are required!!");
+    if (!validateForm()) {
+      return;
     }
-
-    if (!isValid) return;
 
     const hashPassword = bcrypt.hashSync(values.password, 10);
 
@@ -109,8 +109,8 @@ function SignUp(props) {
                 value={values.email}
                 onChange={handleChange}
               />
-              {errors.emailError && (
-                <div className="text-danger">{errors.emailError}</div>
+              {errors.email && (
+                <div className="text-danger">{errors.email}</div>
               )}
             </div>
             <div className="form-group mb-3">
@@ -124,8 +124,23 @@ function SignUp(props) {
                 value={values.password}
                 onChange={handleChange}
               />
-              {errors.passwordError && (
-                <div className="text-danger">{errors.passwordError}</div>
+              {errors.password && (
+                <div className="text-danger">{errors.password}</div>
+              )}
+            </div>
+            <div className="form-group mb-3">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                className="form-control form-control-sm"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={values.confirmPassword}
+                onChange={handleChange}
+              />
+              {errors.confirmPassword && (
+                <div className="text-danger">{errors.confirmPassword}</div>
               )}
             </div>
             <button
