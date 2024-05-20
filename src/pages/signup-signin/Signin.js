@@ -6,30 +6,30 @@ import { useForm } from "../../fragments/customHook/useForm";
 import "./style.css";
 
 function SignIn(props) {
-  useScrollToTop();
+  useScrollToTop(); // Custom hook to scroll to the top of the page on component mount
 
-  const navigate = useNavigate();
-  const [isSignedIn, setIsSignedIn] = useState(null);
+  const navigate = useNavigate(); // Hook to programmatically navigate to different routes
+  const [isSignedIn, setIsSignedIn] = useState(null); // State to track sign-in status
 
   const { values, handleChange, resetForm } = useForm({
     email: "",
     password: "",
-  });
+  }); // Custom hook to manage form state and handle input changes
 
   const handleClick = (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent default form submission behavior
 
-    const verifiedUser = verifySignIn(values.email, values.password);
+    const verifiedUser = verifySignIn(values.email, values.password); // Verify user credentials
 
     if (verifiedUser) {
-      localStorage.setItem("activeUser", JSON.stringify(verifiedUser));
-      setIsSignedIn(true);
+      localStorage.setItem("activeUser", JSON.stringify(verifiedUser)); // Save active user to localStorage
+      setIsSignedIn(true); // Set sign-in status to true
       setTimeout(() => {
-        props.loginUser(verifiedUser.name);
-        navigate("/");
+        props.loginUser(verifiedUser.name); // Call loginUser prop function
+        navigate("/"); // Navigate to home page
       }, 1000);
     } else {
-      setIsSignedIn(false);
+      setIsSignedIn(false); // Set sign-in status to false if verification fails
     }
   };
 
@@ -48,7 +48,7 @@ function SignIn(props) {
                 type="email"
                 name="email"
                 value={values.email}
-                onChange={handleChange}
+                onChange={handleChange} // Handle input change for email
               />
             </div>
             <div className="form-group">
@@ -58,7 +58,7 @@ function SignIn(props) {
                 type="password"
                 name="password"
                 value={values.password}
-                onChange={handleChange}
+                onChange={handleChange} // Handle input change for password
               />
             </div>
             <div className="text-center">
@@ -68,12 +68,12 @@ function SignIn(props) {
             </div>
             {isSignedIn && (
               <div className="text-center">
-                <p>Logging In</p>
+                <p>Logging In</p> {/* Display logging in message */}
               </div>
             )}
             {isSignedIn === false && (
               <div className="text-center mt-3">
-                <p>Invalid email or password</p>
+                <p>Invalid email or password</p> {/* Display invalid credentials message */}
               </div>
             )}
           </form>
