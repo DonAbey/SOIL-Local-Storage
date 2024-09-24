@@ -6,15 +6,15 @@ import { useForm } from "../../fragments/customHook/useForm";
 import "./style.css";
 
 function SignIn(props) {
-  useScrollToTop(); // Custom hook to scroll to the top of the page on component mount
+  useScrollToTop();
 
-  const navigate = useNavigate(); // Hook to programmatically navigate to different routes
-  const [isSignedIn, setIsSignedIn] = useState(null); // State to track sign-in status
+  const navigate = useNavigate(); 
+  const [isSignedIn, setIsSignedIn] = useState(null);
 
   const { values, handleChange, resetForm } = useForm({
     email: "",
     password: "",
-  }); // Custom hook to manage form state and handle input changes
+  }); 
 
   const handleClick = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
@@ -23,6 +23,10 @@ function SignIn(props) {
 
     if (verifiedUser) {
       localStorage.setItem("activeUser", JSON.stringify(verifiedUser)); // Save active user to localStorage
+      //CHATBOT - dialogflow code ammendments
+      localStorage.setItem('greetingDisplayed', 'false');
+      //sessionStorage.removeItem('df-messenger-sessionID');
+      //
       setIsSignedIn(true); // Set sign-in status to true
       setTimeout(() => {
         props.loginUser(verifiedUser.name); // Call loginUser prop function
