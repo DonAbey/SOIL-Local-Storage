@@ -3,6 +3,7 @@ import React from "react";
 
 const USERS_KEY = "users";
 const USER_KEY = "activeUser";
+const AEM_USER = "aemUser"
 
 const getUser = () => {
   const local = localStorage.getItem(USER_KEY);
@@ -24,6 +25,7 @@ const getData = (key) => {
 
 function removeUser() {
   localStorage.removeItem(USER_KEY);
+  localStorage.removeItem(AEM_USER);
 }
 
 const setData = (key, data) => {

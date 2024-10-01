@@ -22,6 +22,22 @@ function SignIn(props) {
     const verifiedUser = verifySignIn(values.email, values.password); // Verify user credentials
 
     if (verifiedUser) {
+      const aemUser = {
+        id: 967,
+        name: "Don",
+        lastName: "Abeynayake",
+        email: "test@gmail",
+        phone: "459340691",
+        role: "CEO",
+        country: "AU",
+        timezone: "AUSTRALIA_SYDNEY",
+        businessName: "Rightx",
+        currentAuthority: "user",
+        accountType: "account"
+      }
+      localStorage.setItem('aemUser', JSON.stringify(aemUser));
+      console.log('aemUser saved to localStorage:', aemUser);
+
       localStorage.setItem("activeUser", JSON.stringify(verifiedUser)); // Save active user to localStorage
       //CHATBOT - dialogflow code ammendments
       localStorage.setItem('greetingDisplayed', 'false');
